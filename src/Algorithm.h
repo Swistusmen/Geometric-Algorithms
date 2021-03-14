@@ -16,7 +16,7 @@ enum class AlgoType {
 	FindingWay, //0 empty, 1 geoemtry, 2 goal, 3 hero, 4 path
 	FindingVerticies, //0 empty, 1 geometry, 2 founded verticies, 3- visited
 	VoronoiDiagram, //0 empty, 1- geoemtry(ignored), 2 ceneters, [3-x] values of centers 
-	DelaunayTriangulation
+	DelaunayTriangulation //0 empty, 1 line, 2 point to connect, 
 };
 
 enum class AlgoState {

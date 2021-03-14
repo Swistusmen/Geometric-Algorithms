@@ -19,6 +19,7 @@ private:
 	double CalculateDistance(std::pair<int, int> p1, std::pair<int, int> p2);
 	std::pair<int, int> TransformIndexToCartesian(int robot, int dimension);
 	std::vector<unsigned int> ConnectTwoPoints(std::vector<unsigned int> data, int robot1, int robot2);
+	std::vector<unsigned int> ConnectTwoPointsWithBresenham(std::vector<unsigned int> data, int robot1, int robot2);
 	int ScanForTheNearestPoint(int , std::pair<int, int>, int, std::vector<unsigned int>);
 
 

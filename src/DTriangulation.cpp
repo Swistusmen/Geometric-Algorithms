@@ -26,13 +26,62 @@ std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data
 {
 	auto size = data.size();
 	std::vector<int> robots;
+	auto dim = std::sqrt(size);
 	for (int i = 0; i < size; i++)
 	{
 		if (data[i] == 2)
 			robots.push_back(i);
 	}
-	data = ConnectTwoPoints(data, robots[0], robots[1]);
-	
+	data = ConnectTwoPointsWithBresenham(data, robots[0], robots[1]);
+	std::cout << robots[0] << " " << std::floor(robots[0] / dim) << " " << static_cast<int>(robots[0]) % static_cast<int>(dim) << std::endl;
+	std::cout << robots[1] << " " << std::floor(robots[1] / dim) << " " << static_cast<int>(robots[1]) % static_cast<int>(dim) << std::endl;
+	return data;
+}
+
+std::vector<unsigned int> DTriangulation::ConnectTwoPointsWithBresenham(std::vector<unsigned int> data, int robot1, int robot2)
+{
+	auto dim = static_cast<int>(std::sqrt(data.size()));
+	auto point1 = std::make_pair(robot1 / dim, robot1 % dim);
+	auto point2 = std::make_pair(robot2 / dim, robot2 % dim);
+	int dx = point1.first - point2.first;
+	int dy = point1.second - point2.second;
+	int kx = point2.first >= point1.first ? 1 : -1;
+	int ky = point2.second >= point1.second ? 1 : -1;
+	dx = std::abs(dx);
+	dy = std::abs(dy);
+	std::cout << dx << " " << dy << std::endl;
+	std::cout << kx << " " << ky << std::endl;
+	int e = dx / 2;
+	data[robot1] = 1;
+	if (dy > dx)
+	{
+		e = dy / 2;
+		for (int i = 0; i < dy; i++)
+		{
+			point1.second += ky;
+			e -= dx;
+			if (e < 0)
+			{
+				point1.first += kx;
+				e += dy;
+			}
+			std::cout << "punkt " << i << " " << point1.first * dim << " " << point1.second << std::endl;
+			data[point1.first * dim + point1.second] = 1;
+		}
+		return data;
+	}
+	for (int i = 0; i < dx;i++)
+	{
+		point1.first += kx;
+		e -= dy;
+		if (e < 0)
+		{
+			point1.second += ky;
+			e += dx;
+		}
+		std::cout << point1.first * dim + point1.second << std::endl;
+		data[point1.first * dim + point1.second] = 1;
+	}
 	return data;
 }
 
@@ -50,6 +99,7 @@ std::vector<unsigned int> DTriangulation::ConnectTwoPoints(std::vector<unsigned 
 			columnChanges++;
 		else
 			rowChanges++;
+		//data[tempPoint] = 1; //this to write line
 		currentPoint = tempPoint;
 		
 
