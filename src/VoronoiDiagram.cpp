@@ -12,10 +12,10 @@ std::vector<unsigned int> VoronoiDiagram::Perform(std::vector<unsigned int> data
 			verticiesIndex.push_back(TransformIndexToCartesian(i, dimension));
 	}
 	data = DrawDiagram(data, verticiesIndex);
-	for (int i = 0; i < size; i++)
+	/*for (int i = 0; i < size; i++)
 	{
 		data[i] = primaryGeometry[i] == 1 ? primaryGeometry[i] : data[i];
-	}
+	}*/
 
 	return data;
 }
