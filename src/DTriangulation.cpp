@@ -25,15 +25,61 @@ DTriangulation::DTriangulation()
 std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data)
 {
 	auto size = data.size();
-	std::vector<int> robots;
+	std::vector<std::pair<int,int>> robots;
 	auto dim = std::sqrt(size);
 	for (int i = 0; i < size; i++)
 	{
 		if (data[i] == 2)
-			robots.push_back(i);
+			robots.push_back({ i ,BelongsTo(i,data) });
 	}
-	data = ConnectTwoPointsWithBresenham(data, robots[0], robots[1]);
+	data = ConnectTwoPointsWithBresenham(data, robots[0].first, robots[1].first);
+	std::cout << robots[0].second << " " << robots[1].second << std::endl;
 	return data;
+}
+
+int DTriangulation::BelongsTo(int robot, std::vector<unsigned int> data)
+{
+	int dim = static_cast<int>(std::sqrt(data.size()));
+	std::vector<int> borders;
+	bool isLeftWall = robot % dim == 0 ? true : false;
+	bool isRightWall = robot % dim == (dim - 1) ? true : false;
+	if (robot - dim >= 0)
+	{
+		borders.push_back(data[robot - dim]);
+		if (!isLeftWall&& robot-1-dim>=0) borders.push_back(data[robot - dim - 1]);
+		if (!isRightWall) borders.push_back(data[robot - dim + 1]);
+	}
+	if (!isLeftWall) borders.push_back(data[robot - 1]);
+	if (!isRightWall) borders.push_back(data[robot + 1]);
+	if (robot + dim < data.size())
+	{
+		borders.push_back(data[robot + dim]);
+		if (!isRightWall && robot + dim + 1 < data.size()) borders.push_back(data[robot + dim + 1]);
+		if (!isLeftWall) borders.push_back(data[robot + dim - 1]);
+	}
+	//create vector of numbers-only 1 
+	
+	std::vector<int> results{ borders[0] };
+	int noBorders = borders.size();
+	for (int i = 1; i < noBorders; i++)
+	{
+		if (std::find(results.begin(), results.end(), borders[i]) == std::end(results))
+			results.push_back(borders[i]);
+	}
+	//count
+	
+	int noFields = results.size();
+	//std::cout << noFields << std::endl;
+	std::vector<int> numbers( noFields );
+	std::fill(numbers.begin(), numbers.end(), 0);
+	for (int i = 0; i < noFields; i++)
+	{
+		numbers[i] = std::count(borders.begin(), borders.end(), results[i]);
+	}
+	//std::cout << numbers[0]<<" "<<numbers[1] << std::endl;
+	//std::cout << std::max_element(numbers.begin(), numbers.end())-std::begin(numbers) << std::endl;
+	return results[std::max_element(numbers.begin(), numbers.end()) - std::begin(numbers)];
+	//return results[*std::max(numbers.begin(), numbers.end())];
 }
 
 std::vector<unsigned int> DTriangulation::ConnectTwoPointsWithBresenham(std::vector<unsigned int> data, int robot1, int robot2)

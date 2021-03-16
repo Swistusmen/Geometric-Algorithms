@@ -17,7 +17,7 @@ public:
 private:
 	std::pair<int, int> TransformIndexToCartesian(int robot, int dimension);
 	std::vector<unsigned int> ConnectTwoPointsWithBresenham(std::vector<unsigned int> data, int robot1, int robot2);
-
+	int BelongsTo(int robot, std::vector<unsigned int> data);
 
 	std::map<Direction, std::function<int(int, int)>> moves;
 	std::array<Direction, 8> directions;
