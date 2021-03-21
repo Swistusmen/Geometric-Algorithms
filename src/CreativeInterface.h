@@ -1,15 +1,10 @@
 #include "Utilities.h"
-#include "MainInterface.h"
 
-class CrateiveInterface: public MainInterface {
+class CrateiveInterface {
 public:
-	virtual InterfaceState GetInterfaceState();
-	virtual void ChangeInterfaceState();
-	virtual void Exit();
-
-	virtual void ChangeColour(unsigned int);
-	virtual unsigned int GetCurrentColour();
-	virtual void NewBoard();
-	virtual void SaveBoard();
-	virtual void ChangeSize(unsigned int);
+	virtual void ChangeColour(unsigned int)=0;
+	virtual unsigned int GetCurrentColour()=0;
+	virtual void NewBoard()=0;
+	virtual void SaveBoard()=0;
+	virtual void ChangeSize(unsigned int)=0;
 };

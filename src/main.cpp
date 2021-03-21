@@ -4,8 +4,8 @@
 /*TODO
 1. Make a line straight line DONE
 2. Make a implementation of some basic geometriacl functions in separete classes and inherit from them
-3. Make a reader
-4. Make an input reader (choose cell and then input cell)
+3. Make a reader DONE
+4. Make an input reader (choose cell and then input cell) DONE
 5. Add informartion how to use, and what algorithm does
 6. Add more tests DONE
 7. Add GUI app

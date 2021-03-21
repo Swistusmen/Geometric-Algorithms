@@ -2,8 +2,8 @@
 
 class MainInterface {
 public:
-	virtual InterfaceState GetInterfaceState();
-	virtual void ChangeInterfaceState();
+	virtual InterfaceState GetInterfaceState()=0;
+	virtual void ChangeInterfaceState()=0;
 
-	virtual void Exit();
+	virtual void Exit()=0;
 };
