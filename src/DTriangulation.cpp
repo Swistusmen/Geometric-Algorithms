@@ -25,7 +25,6 @@ DTriangulation::DTriangulation()
 std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data)
 {
 	auto size = data.size();
-	//std::vector<std::pair<int,int>> robots;
 	std::map<int, int> robots;
 	auto dim = std::sqrt(size);
 	for (int i = 0; i < size; i++)
@@ -40,8 +39,6 @@ std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data
 		auto drawing = ConnectTwoPointsWithBresenham(data, robots.at(it->first), robots.at(it->second));
 		output = MergeDrawings(drawing, output);
 	}
-	//data = ConnectTwoPointsWithBresenham(data, robots[0].first, robots[1].first);
-	//std::cout << robots[0].second << " " << robots[1].second << std::endl;
 
 	return output;
 }
@@ -105,7 +102,6 @@ int DTriangulation::BelongsTo(int robot, std::vector<unsigned int> data)
 {
 	auto borders = KnowEnvironment(data, robot);
 	//create vector of numbers-only 1 
-	
 	std::vector<unsigned int> results{ borders[0] };
 	int noBorders = borders.size();
 	for (int i = 1; i < noBorders; i++)
@@ -116,17 +112,13 @@ int DTriangulation::BelongsTo(int robot, std::vector<unsigned int> data)
 	//count
 	
 	int noFields = results.size();
-	//std::cout << noFields << std::endl;
 	std::vector<int> numbers( noFields );
 	std::fill(numbers.begin(), numbers.end(), 0);
 	for (int i = 0; i < noFields; i++)
 	{
 		numbers[i] = std::count(borders.begin(), borders.end(), results[i]);
 	}
-	//std::cout << numbers[0]<<" "<<numbers[1] << std::endl;
-	//std::cout << std::max_element(numbers.begin(), numbers.end())-std::begin(numbers) << std::endl;
 	return results[std::max_element(numbers.begin(), numbers.end()) - std::begin(numbers)];
-	//return results[*std::max(numbers.begin(), numbers.end())];
 }
 
 std::vector<unsigned int> DTriangulation::ConnectTwoPointsWithBresenham(std::vector<unsigned int> data, int robot1, int robot2)
@@ -167,7 +159,7 @@ std::vector<unsigned int> DTriangulation::ConnectTwoPointsWithBresenham(std::vec
 			point1.second += ky;
 			e += dx;
 		}
-		std::cout << point1.first * dim + point1.second << std::endl;
+		//std::cout << point1.first * dim + point1.second << std::endl;
 		data[point1.first * dim + point1.second] = 1;
 	}
 	return data;
