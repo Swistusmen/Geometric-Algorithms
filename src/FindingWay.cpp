@@ -115,11 +115,6 @@ std::vector<unsigned int> FindingWay::MakeAMove(int robot,int distance,int dimen
 	return board;
 }
 
-std::vector<double> FindingWay::Perform(std::vector<double> data)
-{
-	return data;
-}
-
 AlgoType FindingWay::Type()
 {
 	return type;

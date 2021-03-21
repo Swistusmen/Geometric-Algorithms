@@ -78,11 +78,6 @@ Direction FindingVerticies::FindDirection(int robot, int dimension, std::vector<
 AlgoType FindingVerticies::Type() { return type; }
 AlgoState FindingVerticies::State() { return state;}
 
-std::vector<double> FindingVerticies::Perform(std::vector<double> data)
-{
-	return data;
-}
-
 void FindingVerticies::ClearMemory()
 {
 

@@ -171,11 +171,6 @@ std::pair<int, int> DTriangulation::TransformIndexToCartesian(int robot, int dim
 	return { x,y };
 }
 
-std::vector<double> DTriangulation::Perform(std::vector<double> data)
-{
-	return data;
-}
-
 AlgoType DTriangulation::Type()
 {
 	return type;

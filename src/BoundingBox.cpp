@@ -87,11 +87,6 @@ std::array<int, 4> BoundingBox::CalculateEdgeRows(std::array<int, 4> data, int d
 	return data;
 }
 
-std::vector<double> BoundingBox::Perform(std::vector<double> data)
-{
-	return data;
-}
-
 AlgoType BoundingBox::Type() { return type; }
 
 AlgoState BoundingBox::State() {return state;}

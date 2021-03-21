@@ -31,10 +31,6 @@ std::vector<unsigned int> ReadInputFromFile(std::string filename)
 
 std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data)
 {
-	//auto saves = GetSaves();
-	//auto isUsed = std::find(saves.begin(), saves.end(), filename);
-		//if (isUsed == std::end(saves))
-		{
 		std::ofstream file;
 		auto path = fs::current_path().parent_path().parent_path();
 		path += "\\saves\\";
@@ -44,9 +40,6 @@ std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> dat
 		file.close();
 		std::cout << CodeMatrix(data) << std::endl;
 		std::cout << path << std::endl;
-	}
-	//std::cout << "Not in here\n";
-	//throw std::exception("There is a file with such a name\n");
 	return "Hello";
 }
 
@@ -113,58 +106,7 @@ std::vector<unsigned int> DecodeFileToMatrix(std::string file)
 	std::cout << data.size() << std::endl;
 	return data;
 }
-/*
-std::vector<unsigned int> DecodeFileToMatrix(std::string file)
-{
-	std::vector<unsigned int> data;
-	std::string::iterator it;
-	
-	for (it = file.begin(); it != file.end();it++)
-	{
-		if (*it == '{')
-		{
-			std::string number = "";
-			std::string field = "";
-			if (file.end() > it)
-			it++;
-			while (*it!='}'&& file.end() > it)
-			{
-				number += *it;
-				if (it < file.end())
-					it++;
-				else {
 
-					break;
-				}
-			}
-			if(file.end() > it)
-			it++;
-			while (*it != '{'&& file.end() > it)
-			{
-				field += *it;
-				if (file.end() > it)
-					it++;
-				else break;
-			}
-			it--;
-			//std::cout << *it << std::endl;
-			std::cout << number << std::endl;
-			std::cout << field << std::endl;
-			int n = std::stoi(number);
-			unsigned int num = static_cast<unsigned int>(std::stoi(field));
-			for (int i = 0; i < n; i++)
-			{
-				data.push_back(num);
-			}
-		}
-		else {
-			std::cerr << "Error\n";
-			break;
-		}
-	}
-	return data;
-}
-*/
 std::vector<std::string> GetSaves()
 {
 	std::vector<std::string > saves;

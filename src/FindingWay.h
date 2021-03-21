@@ -6,7 +6,6 @@ public:
 	FindingWay();
 
 	std::vector<unsigned int> Perform(std::vector<unsigned int> data) override;
-	std::vector<double> Perform(std::vector<double> data) override final;
 
 	AlgoType Type() override;
 	AlgoState State() override;

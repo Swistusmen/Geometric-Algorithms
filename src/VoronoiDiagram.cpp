@@ -12,10 +12,6 @@ std::vector<unsigned int> VoronoiDiagram::Perform(std::vector<unsigned int> data
 			verticiesIndex.push_back(TransformIndexToCartesian(i, dimension));
 	}
 	data = DrawDiagram(data, verticiesIndex);
-	/*for (int i = 0; i < size; i++)
-	{
-		data[i] = primaryGeometry[i] == 1 ? primaryGeometry[i] : data[i];
-	}*/
 
 	return data;
 }
@@ -51,11 +47,6 @@ std::pair<int, int> VoronoiDiagram::TransformIndexToCartesian(int index, int dim
 double VoronoiDiagram::CalculateDistance(std::pair<int, int> p1, std::pair<int, int> p2)
 {
 	return std::sqrt(std::pow(p1.first - p2.first, 2) + std::pow(p1.second - p2.second, 2));
-}
-
-std::vector<double> VoronoiDiagram::Perform(std::vector<double> data)
-{
-	return data;
 }
 
 AlgoType VoronoiDiagram::Type()
