@@ -159,7 +159,6 @@ std::vector<unsigned int> DTriangulation::ConnectTwoPointsWithBresenham(std::vec
 			point1.second += ky;
 			e += dx;
 		}
-		//std::cout << point1.first * dim + point1.second << std::endl;
 		data[point1.first * dim + point1.second] = 1;
 	}
 	return data;
