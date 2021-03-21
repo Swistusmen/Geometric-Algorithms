@@ -32,21 +32,45 @@ std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data
 		if (data[i] == 2)
 			robots.push_back({ i ,BelongsTo(i,data) });
 	}
-	data = ConnectTwoPointsWithBresenham(data, robots[0].first, robots[1].first);
-	std::cout << robots[0].second << " " << robots[1].second << std::endl;
+	auto myConnections = DetectBorders(data);
+	for (auto it = myConnections.begin(); it != myConnections.end(); it++)
+	{
+		std::cout << it->first << " " << it->second << std::endl;
+	}
+	//data = ConnectTwoPointsWithBresenham(data, robots[0].first, robots[1].first);
+	//std::cout << robots[0].second << " " << robots[1].second << std::endl;
+
+
 	return data;
 }
 
-int DTriangulation::BelongsTo(int robot, std::vector<unsigned int> data)
+std::set<std::pair<int,int>> DTriangulation::DetectBorders(std::vector<unsigned int> data)
+{
+	const int noElements = data.size();
+	std::set<std::pair<int, int>> ChangesOfFields;
+	for (int i = 0; i < noElements; i++)
+	{
+		auto borders = KnowEnvironment(data, i);
+		const int noBorders = borders.size();
+		for (int j = 0; j < noBorders; j++)
+		{
+			if (borders[j] > 2 && borders[j] != data[i]&& data[i]!=2)
+				ChangesOfFields.insert({ std::min(data[i],borders[j]),std::max(data[i],borders[j]) });
+		}
+	}
+	return ChangesOfFields;
+}
+
+std::vector<unsigned int> DTriangulation::KnowEnvironment(std::vector<unsigned int> data, int robot)
 {
 	int dim = static_cast<int>(std::sqrt(data.size()));
-	std::vector<int> borders;
+	std::vector<unsigned int> borders;
 	bool isLeftWall = robot % dim == 0 ? true : false;
 	bool isRightWall = robot % dim == (dim - 1) ? true : false;
 	if (robot - dim >= 0)
 	{
 		borders.push_back(data[robot - dim]);
-		if (!isLeftWall&& robot-1-dim>=0) borders.push_back(data[robot - dim - 1]);
+		if (!isLeftWall && robot - 1 - dim >= 0) borders.push_back(data[robot - dim - 1]);
 		if (!isRightWall) borders.push_back(data[robot - dim + 1]);
 	}
 	if (!isLeftWall) borders.push_back(data[robot - 1]);
@@ -57,9 +81,15 @@ int DTriangulation::BelongsTo(int robot, std::vector<unsigned int> data)
 		if (!isRightWall && robot + dim + 1 < data.size()) borders.push_back(data[robot + dim + 1]);
 		if (!isLeftWall) borders.push_back(data[robot + dim - 1]);
 	}
+	return borders;
+}
+
+int DTriangulation::BelongsTo(int robot, std::vector<unsigned int> data)
+{
+	auto borders = KnowEnvironment(data, robot);
 	//create vector of numbers-only 1 
 	
-	std::vector<int> results{ borders[0] };
+	std::vector<unsigned int> results{ borders[0] };
 	int noBorders = borders.size();
 	for (int i = 1; i < noBorders; i++)
 	{

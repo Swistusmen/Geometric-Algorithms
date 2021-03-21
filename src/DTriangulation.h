@@ -1,6 +1,7 @@
 #pragma once
 #include "Algorithm.h"
 #include <numeric>
+#include <set>
 
 
 class DTriangulation : public Algorithm {
@@ -18,7 +19,9 @@ private:
 	std::pair<int, int> TransformIndexToCartesian(int robot, int dimension);
 	std::vector<unsigned int> ConnectTwoPointsWithBresenham(std::vector<unsigned int> data, int robot1, int robot2);
 	int BelongsTo(int robot, std::vector<unsigned int> data);
+	std::set<std::pair<int, int>> DetectBorders(std::vector<unsigned int> data);
 
+	std::vector<unsigned int> KnowEnvironment(std::vector<unsigned int> data, int robot);
 	std::map<Direction, std::function<int(int, int)>> moves;
 	std::array<Direction, 8> directions;
 	int verticalDistance = 1;
