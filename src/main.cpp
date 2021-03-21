@@ -73,16 +73,29 @@ int main()
 		9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7
 	};
 	*/
-
+	/*
+	std::vector<unsigned int> input{
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 2, 1, 1, 1, 1, 2, 0,
+		0, 1, 0, 0, 0, 0, 1, 0,
+		0, 1, 0, 0, 0, 0, 1, 0,
+		0, 1, 0, 0, 0, 0, 1, 0,
+		0, 1, 0, 0, 0, 0, 1, 0,
+		0, 2, 1, 1, 1, 1, 2, 0,
+		0, 0, 0, 0, 0, 0, 0, 0
+	};
+	*/
+	std::cout << ParseToMatrix(input) << std::endl;
 	auto algorithms = std::make_shared<AlgorithmsKeeper>();
 	auto board = std::make_unique<BoardImplementation>(algorithms, input);
 	
-	board->SetAlgorithm(AlgoType::DelaunayTriangulation);
+	board->SetAlgorithm(AlgoType::VoronoiDiagram);
 
 	board->PerformAlgorithm();
 	auto mat = board->GetCurrentState();
 	
 	std::cout << ParseToMatrix(mat) << std::endl;
-	SaveOutputToFile("hello.txt", mat);
+	
+	//SaveOutputToFile("hello.txt", input);
 	return 0;
 }

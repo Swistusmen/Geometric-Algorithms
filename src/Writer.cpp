@@ -68,9 +68,52 @@ std::string CodeMatrix(std::vector<unsigned int> data)
 			currentNumberCounter++;
 		}
 	}
+	output += "{" + std::to_string(currentNumberCounter) + "}" + std::to_string(currentNumber);
 	return output;
 }
 
+std::vector<unsigned int> DecodeFileToMatrix(std::string file)
+{
+	std::vector<unsigned int> data;
+	std::string::iterator it;
+	std::string field = "";
+	std::string number = "";
+	bool addToNumber = false;
+	for (it = file.begin(); it != file.end(); it++)
+	{
+		if ('{' == *it)
+		{
+			if (field != "")
+			{
+				int n = std::stoi(number);
+				unsigned int num = static_cast<unsigned int>(std::stoi(field));
+				for (int i = 0; i < n;i++)
+				{
+					data.push_back(num);
+				}
+				field = "";
+				number = "";
+			}
+			addToNumber = true;
+		}
+		else if ('}' == *it)
+		{
+			addToNumber = false;
+		}
+		else {
+			addToNumber == true ? number += *it : field += *it;
+		}
+	}
+	int n = std::stoi(number);
+	unsigned int num = static_cast<unsigned int>(std::stoi(field));
+	for (int i = 0; i < n; i++)
+	{
+		data.push_back(num);
+	}
+	std::cout << data.size() << std::endl;
+	return data;
+}
+/*
 std::vector<unsigned int> DecodeFileToMatrix(std::string file)
 {
 	std::vector<unsigned int> data;
@@ -121,7 +164,7 @@ std::vector<unsigned int> DecodeFileToMatrix(std::string file)
 	}
 	return data;
 }
-
+*/
 std::vector<std::string> GetSaves()
 {
 	std::vector<std::string > saves;
