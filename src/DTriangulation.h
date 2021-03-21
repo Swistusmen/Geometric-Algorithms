@@ -21,6 +21,7 @@ private:
 	int BelongsTo(int robot, std::vector<unsigned int> data);
 	std::set<std::pair<int, int>> DetectBorders(std::vector<unsigned int> data);
 
+	std::vector<unsigned int> MergeDrawings(std::vector<unsigned int> draw1, std::vector<unsigned int> draw2 );
 	std::vector<unsigned int> KnowEnvironment(std::vector<unsigned int> data, int robot);
 	std::map<Direction, std::function<int(int, int)>> moves;
 	std::array<Direction, 8> directions;

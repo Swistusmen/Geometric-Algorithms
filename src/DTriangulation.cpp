@@ -25,23 +25,40 @@ DTriangulation::DTriangulation()
 std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data)
 {
 	auto size = data.size();
-	std::vector<std::pair<int,int>> robots;
+	//std::vector<std::pair<int,int>> robots;
+	std::map<int, int> robots;
 	auto dim = std::sqrt(size);
 	for (int i = 0; i < size; i++)
 	{
 		if (data[i] == 2)
-			robots.push_back({ i ,BelongsTo(i,data) });
+			robots.insert({ BelongsTo(i,data),i });
 	}
 	auto myConnections = DetectBorders(data);
+	std::vector<unsigned int> output{ data };
 	for (auto it = myConnections.begin(); it != myConnections.end(); it++)
 	{
-		std::cout << it->first << " " << it->second << std::endl;
+		auto drawing = ConnectTwoPointsWithBresenham(data, robots.at(it->first), robots.at(it->second));
+		output = MergeDrawings(drawing, output);
 	}
 	//data = ConnectTwoPointsWithBresenham(data, robots[0].first, robots[1].first);
 	//std::cout << robots[0].second << " " << robots[1].second << std::endl;
 
+	return output;
+}
 
-	return data;
+std::vector<unsigned int> DTriangulation::MergeDrawings(std::vector<unsigned int> draw1, std::vector<unsigned int> draw2)
+{
+	std::vector<unsigned int> output;
+	const int sizeOfDrawing = draw1.size();
+	for (int i = 0; i < sizeOfDrawing; i++)
+	{
+		if (draw1[i] == 1 || draw2[i] == 1)
+			output.push_back(1);
+		else {
+			output.push_back(draw1[i]);
+		}
+	}
+	return output;
 }
 
 std::set<std::pair<int,int>> DTriangulation::DetectBorders(std::vector<unsigned int> data)
