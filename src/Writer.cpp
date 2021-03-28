@@ -17,6 +17,32 @@ std::string ParseToMatrix(std::vector<unsigned int> input)
 	return output;
 }
 
+void DisplayColorful(std::vector<unsigned int> data)
+{
+	auto size = data.size();
+	int dimensionSize = std::sqrt(size);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	for (int index = 0; index < size; index++)
+	{
+		if (index % dimensionSize == 0)
+		{
+			std::cout << "\n";
+		}
+		if (data[index] == 1)
+		{
+			SetConsoleTextAttribute(hConsole, 11);
+			std::cout << data[index] << " ";
+			SetConsoleTextAttribute(hConsole, 15);
+		}
+		else {
+			SetConsoleTextAttribute(hConsole, 15);
+			std::cout << data[index] << " ";
+			SetConsoleTextAttribute(hConsole, 11);
+		}
+	}std::cout << std::endl;
+	system("pause");
+}
+
 std::vector<unsigned int> ReadInputFromFile(std::string filename)
 {
 	std::ifstream file;

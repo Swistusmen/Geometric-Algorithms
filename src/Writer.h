@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include <sstream>
+#include <Windows.h>
 
 std::string ParseToMatrix(std::vector<unsigned int> input);
 
@@ -17,3 +18,5 @@ std::vector<std::string> GetSaves();
 std::string CodeMatrix(std::vector<unsigned int> data);
 
 std::vector<unsigned int> DecodeFileToMatrix(std::string filename);
+
+void DisplayColorful(std::vector<unsigned int> data);

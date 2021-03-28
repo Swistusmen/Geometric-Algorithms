@@ -10,13 +10,11 @@ Application::Application()
 
 void Application::Run()
 {
-	// choose operations: 1 interface, 2. Close, 3 Operations for interface
-	//Operations for algorithm interface: perform, load, change algorithm, read description, read messages, save
-	//Present
 	int choice = -1;
 	
 	while (true)
 	{
+		system("cls");
 		Footer();
 		choice = ChooseOption();
 		switch (choice) {
@@ -104,11 +102,14 @@ void Application::LoadData()
 	}
 	data = ReadInputFromFile(saves[saveToLoad]);
 	myBoard.LoadNewData(data);
+	isDataSet = true;
 }
 
 AlgoState Application::PerformAlgorithm()
 {
 	myBoard.PerformAlgorithm();
+	data = myBoard.GetCurrentState();
+	DisplayColorful(data);
 	return AlgoState::NONE;
 }
 
@@ -214,11 +215,16 @@ void Application::Footer()
 	SetConsoleTextAttribute(hConsole, 15);
 	std::cout << "Data: ";
 	SetConsoleTextAttribute(hConsole, 11);
-	data.size() != 0 ? std::cout << "Initialized\n" : std::cout << "Not initialized\n";
+	isDataSet ? std::cout << "Initialized\n" : std::cout << "Not initialized\n";
 	SetConsoleTextAttribute(hConsole, 15);
-	/*for (int i = 0; i < 255; i++)
+	std::cout << "Algorithm State: ";
+	SetConsoleTextAttribute(hConsole, 11);
+	switch (this->algorithmState)
 	{
-		SetConsoleTextAttribute(hConsole, i);
-		std::cout << i << std::endl;
-	}*/
+	case AlgoState::PERFORMING: {std::cout << "Performing\n"; }break;
+	case AlgoState::FINISHED_FAILURE: {std::cout << "Finished successfully\n"; }break;
+	case AlgoState::FINISHED_SUCCESS: {std::cout << "Finished failure\n"; }break;
+	case AlgoState::NONE: {std::cout << "None\n"; }break;
+	}
+	SetConsoleTextAttribute(hConsole, 15);
 }
