@@ -7,8 +7,10 @@
 class Application : public MainInterface, public AlgorithmInterface
 {
 public:
+	Application();
+
 	InterfaceState GetInterfaceState() override;
-	void ChangeInterfaceState() override;
+	void ChangeInterfaceState(InterfaceState state) override;
 	void Exit() override;
 
 	void LoadData() override;
@@ -17,8 +19,9 @@ public:
 	std::string GetAlgorithmDescription() override;
 	AlgoType ChangeAlgorithmType() override;
 private:
-	AlgoType algorithmType;
-	AlgoState algorithmState;
-	std::string algorithmDescription;
+	AlgoType algorithmType=AlgoType::None;
+	AlgoState algorithmState=AlgoState::NONE;
+	InterfaceState interfaceState=InterfaceState::MAIN;
+	std::string algorithmDescription="";
 	std::vector<unsigned int> data;
 };

@@ -25,18 +25,13 @@ std::vector<unsigned int> BoardImplementation::GetCurrentState()
 
 std::vector<unsigned int> BoardImplementation::OutputRepresentation()
 {
-	std::vector<unsigned int> output;
-	if (this->representation == FieldRepresentation::SDF)
-	{
-		output.resize(matrix.size());
-		std::transform(sdf.begin(), sdf.end(), output.begin(), [](auto a) {
-			return a == 0 ? 1 : a < 0 ? 0 : 2;
-		});
-	}
-	else {
-		output = matrix;
-	}
+	std::vector<unsigned int> output = matrix;
 	return output;
+}
+
+void BoardImplementation::LoadNewData(std::vector<unsigned int> data)
+{
+	matrix = data;
 }
 
 FieldRepresentation BoardImplementation::Representation()
