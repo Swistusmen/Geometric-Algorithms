@@ -31,6 +31,7 @@ std::vector<unsigned int> BoardImplementation::OutputRepresentation()
 
 void BoardImplementation::LoadNewData(std::vector<unsigned int> data)
 {
+	std::cout << "Loaded\n";
 	matrix = data;
 }
 

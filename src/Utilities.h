@@ -1,3 +1,6 @@
+#pragma once
+#include <iostream>
+
 enum class AlgoType {
 	None,
 	BoundingBox, //0 empty, 1 geometry
