@@ -40,4 +40,6 @@ private:
 
 	std::stack<std::string> messages;
 
+private:
+	bool isDataSet = false;
 };

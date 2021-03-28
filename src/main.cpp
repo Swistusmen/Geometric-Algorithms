@@ -3,14 +3,10 @@
 #include "Application.h"
 
 /*TODO
-1. Make a line straight line DONE
-2. Make a implementation of some basic geometriacl functions in separete classes and inherit from them
-3. Make a reader DONE
-4. Make an input reader (choose cell and then input cell) DONE
-5. Add informartion how to use, and what algorithm does
-6. Add more tests DONE
-7. Add GUI app
-8. Add Deluanya Triangulation algorithm -DONE
+1. Add checking app state,checking algorithm state, alogrithm flow
+2. Add Output
+3. Simplify code as much as possible
+4. Start making GUI
 */
 
 
