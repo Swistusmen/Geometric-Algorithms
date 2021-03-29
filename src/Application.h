@@ -33,6 +33,7 @@ private: //operations for console interface
 
 private:
 	AlgoType algorithmType=AlgoType::None;
+	AlgoType dataType = AlgoType::None;
 	AlgoState algorithmState=AlgoState::NONE;
 	InterfaceState interfaceState=InterfaceState::MAIN;
 	std::string algorithmDescription="";

@@ -101,13 +101,21 @@ void Application::LoadData()
 		std::cin >> saveToLoad;
 		saveToLoad--;
 	}
-	data = ReadInputFromFile(saves[saveToLoad]);
+	auto readFile= ReadInputFromFile(saves[saveToLoad]);
+	data = readFile.first;
+	this->dataType = readFile.second;
 	myBoard.LoadNewData(data);
 	isDataSet = true;
 }
 
 void Application::PerformAlgorithm()
 {
+	if (this->dataType != this->algorithmType)
+	{
+		std::cout << "Incompatible data type\n";
+		system("wait");
+		return;
+	}
 	this->algorithmState=myBoard.PerformAlgorithm();
 	data = myBoard.GetCurrentState();
 	DisplayColorful(data);
@@ -184,10 +192,21 @@ void Application::Footer()
 	SetConsoleTextAttribute(hConsole, 11);
 	switch (this->algorithmState)
 	{
-	case AlgoState::PERFORMING: {std::cout << "Performing\n"; }break;
-	case AlgoState::FINISHED_FAILURE: {std::cout << "Finished failure\n"; }break;
-	case AlgoState::FINISHED_SUCCESS: {std::cout << "Finished successfully\n"; }break;
-	case AlgoState::NONE: {std::cout << "None\n"; }break;
+	case AlgoState::PERFORMING: {std::cout << "Performing "; }break;
+	case AlgoState::FINISHED_FAILURE: {std::cout << "Finished failure "; }break;
+	case AlgoState::FINISHED_SUCCESS: {std::cout << "Finished successfully "; }break;
+	case AlgoState::NONE: {std::cout << "None "; }break;
+	}
+	SetConsoleTextAttribute(hConsole, 15);
+	std::cout << "Data type: ";
+	SetConsoleTextAttribute(hConsole, 11);
+	switch (this->dataType) {
+	case AlgoType::None: { std::cout << "Not initlized\n"; }break;
+	case AlgoType::BoundingBox: { std::cout << "Bounding box\n"; }break;
+	case AlgoType::FindingWay: { std::cout << "Finding Way\n"; }break;
+	case AlgoType::FindingVerticies: { std::cout << "Finding Verticies\n"; }break;
+	case AlgoType::VoronoiDiagram: { std::cout << "Voronoi Diagram\n"; }break;
+	case AlgoType::DelaunayTriangulation: { std::cout << "Triangulation\n"; }break;
 	}
 	SetConsoleTextAttribute(hConsole, 15);
 	

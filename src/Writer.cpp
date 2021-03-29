@@ -43,7 +43,7 @@ void DisplayColorful(std::vector<unsigned int> data)
 	system("pause");
 }
 
-std::vector<unsigned int> ReadInputFromFile(std::string filename)
+std::pair<std::vector<unsigned int>,AlgoType> ReadInputFromFile(std::string filename)
 {
 	std::ifstream file;
 	auto path = fs::current_path().parent_path().parent_path();
@@ -51,8 +51,10 @@ std::vector<unsigned int> ReadInputFromFile(std::string filename)
 	path += filename;
 	file.open(path);
 	std::string codedMatrix;
+	std::string algoType;
+	std::getline(file, algoType);
 	std::getline(file,codedMatrix);
-	return DecodeFileToMatrix(codedMatrix);
+	return { DecodeFileToMatrix(codedMatrix),DecodeAlgorithm(algoType) };
 }
 
 std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data)
@@ -143,4 +145,16 @@ std::vector<std::string> GetSaves()
 		saves.push_back(entry.path().filename().string());
 	}
 	return saves;
+}
+
+AlgoType DecodeAlgorithm(std::string name)
+{
+	int algo = std::stoi(name);
+	switch (algo) {
+	case 1: return AlgoType::BoundingBox;
+	case 2: return AlgoType::FindingWay;
+	case 3: return AlgoType::FindingVerticies;
+	case 4: return AlgoType::VoronoiDiagram;
+	case 5: return AlgoType::DelaunayTriangulation;
+	}
 }
