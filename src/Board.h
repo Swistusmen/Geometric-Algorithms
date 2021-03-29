@@ -19,6 +19,7 @@ public:
 	AlgoState PerformAlgorithm() override;
 	void SetAlgorithm(AlgoType type) override;
 	void LoadNewData(std::vector<unsigned int> data);
+	void ClearAlgorithm();
 
 	AlgoType GetAlgorithm() override;
 	FieldRepresentation  Representation() override;

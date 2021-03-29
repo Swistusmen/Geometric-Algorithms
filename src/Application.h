@@ -26,6 +26,7 @@ public:
 	std::string GetAlgorithmDescription() override;
 	AlgoType ChangeAlgorithmType(AlgoType type) override;
 	AlgoType ChangeAlgorithmType() override;
+	void ClearAlgorithm() override;
 private: //operations for console interface
 	int ChooseOption();
 	void Footer();

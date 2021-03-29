@@ -55,3 +55,9 @@ void BoardImplementation::SetAlgorithm(AlgoType type)
 	algo = algorithmGetter->GetAlgorithm(type);
 	//to implement
 }
+
+void BoardImplementation::ClearAlgorithm()
+{
+	if(this->algo)
+		this->algo->ClearMemory();
+}

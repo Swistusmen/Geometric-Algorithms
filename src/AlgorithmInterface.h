@@ -11,6 +11,7 @@ public:
 	virtual std::string GetAlgorithmDescription()=0;
 	virtual AlgoType ChangeAlgorithmType(AlgoType type)=0;
 	virtual AlgoType ChangeAlgorithmType() = 0; //just for console interface
+	virtual void ClearAlgorithm() = 0;
 
-	std::vector<std::string> aInterfaceCommands{ "Load","Perform","Get Algorithm Description", "Change algorithm", "Read messages" };
+	std::vector<std::string> aInterfaceCommands{ "Load","Perform","Get Algorithm Description", "Change algorithm",  "Clear Algorithm" };
 };

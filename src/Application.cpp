@@ -24,6 +24,7 @@ void Application::Run()
 		case 3: {PerformAlgorithm(); } break;
 		case 4: {GetAlgorithmDescription(); } break;
 		case 5: {ChangeAlgorithmType(); } break;
+		case 6: {ClearAlgorithm(); }break;
 		}
 	}
 }
@@ -190,4 +191,10 @@ void Application::Footer()
 	}
 	SetConsoleTextAttribute(hConsole, 15);
 	
+}
+
+void Application::ClearAlgorithm()
+{
+	myBoard.ClearAlgorithm();
+	this->algorithmState = AlgoState::NONE;
 }
