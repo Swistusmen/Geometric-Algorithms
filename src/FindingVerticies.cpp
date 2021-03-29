@@ -24,6 +24,8 @@ FindingVerticies::FindingVerticies()
 
 std::vector<unsigned int> FindingVerticies::Perform(std::vector<unsigned int> data)
 {
+	if (this->state == AlgoState::FINISHED_SUCCESS)
+		return data;
 	auto size = data.size();
 	int dimension = std::sqrt(size);
 	int robot = std::find(data.begin(), data.end(), 1) - data.begin();
@@ -38,6 +40,7 @@ std::vector<unsigned int> FindingVerticies::Perform(std::vector<unsigned int> da
 		robot = result.second;
 	}
 	std::transform(data.begin(), data.end(), data.begin(), [](auto a) { return a == 3 ? 1 : a; });
+	this->state = AlgoState::FINISHED_SUCCESS;
 	return data;
 }
 
@@ -80,5 +83,5 @@ AlgoState FindingVerticies::State() { return state;}
 
 void FindingVerticies::ClearMemory()
 {
-
+	this->state = AlgoState::NONE;
 }

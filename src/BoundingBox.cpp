@@ -2,6 +2,8 @@
 
 std::vector<unsigned int> BoundingBox::Perform(std::vector<unsigned int> data)
 {
+	if (this->state == AlgoState::FINISHED_SUCCESS)
+		return data;
 	auto size = data.size();
 	int dimension = static_cast<int>(sqrt(size));
 	std::vector<int> geometries;
@@ -38,7 +40,7 @@ std::vector<unsigned int> BoundingBox::Perform(std::vector<unsigned int> data)
 	
 	for (int i = tr-1; i < br; i += dimension)
 		data[i] = 2;
-
+	this->state = AlgoState::FINISHED_SUCCESS;
 	return data;
 }
 

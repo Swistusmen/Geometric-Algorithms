@@ -24,6 +24,8 @@ FindingWay::FindingWay()
 
 std::vector<unsigned int> FindingWay::Perform(std::vector<unsigned int> data)
 {
+	if (this->state == AlgoState::FINISHED_SUCCESS)
+		return data;
 	auto size = data.size();
 	int dimension = static_cast<int>(sqrt(size));
 	int robot = std::find(data.begin(), data.end(), 3)-data.begin();

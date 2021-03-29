@@ -6,7 +6,7 @@ class AlgorithmInterface  {
 public:
 
 	virtual void LoadData()=0;
-	virtual AlgoState PerformAlgorithm()=0;
+	virtual void PerformAlgorithm()=0;
 	virtual AlgoType GetCurrentAlgorithm()=0;
 	virtual std::string GetAlgorithmDescription()=0;
 	virtual AlgoType ChangeAlgorithmType(AlgoType type)=0;

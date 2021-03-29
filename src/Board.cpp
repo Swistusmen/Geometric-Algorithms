@@ -1,6 +1,5 @@
 #include "Board.h"
 
-//Constructors
 BoardImplementation::BoardImplementation(std::shared_ptr<AlgorithmsKeeper> str, std::vector<unsigned int> input)
 {
 	this->algorithmGetter = str;
@@ -45,10 +44,10 @@ AlgoType BoardImplementation::GetAlgorithm()
 	return algo->Type();
 }
 
-void BoardImplementation::PerformAlgorithm()
+AlgoState BoardImplementation::PerformAlgorithm()
 {
-	//to implement as it is only bounding box now
 	matrix=algo->Perform(matrix);
+	return algo->State();
 }
 
 void BoardImplementation::SetAlgorithm(AlgoType type)

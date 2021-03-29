@@ -24,6 +24,8 @@ DTriangulation::DTriangulation()
 
 std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data)
 {
+	if (this->state == AlgoState::FINISHED_SUCCESS)
+		return data;
 	auto size = data.size();
 	std::map<int, int> robots;
 	auto dim = std::sqrt(size);
@@ -39,7 +41,7 @@ std::vector<unsigned int> DTriangulation::Perform(std::vector<unsigned int> data
 		auto drawing = ConnectTwoPointsWithBresenham(data, robots.at(it->first), robots.at(it->second));
 		output = MergeDrawings(drawing, output);
 	}
-
+	this->state = AlgoState::FINISHED_SUCCESS;
 	return output;
 }
 
@@ -183,5 +185,5 @@ AlgoState DTriangulation::State()
 
 void DTriangulation::ClearMemory()
 {
-
+	this->state = AlgoState::NONE;
 }

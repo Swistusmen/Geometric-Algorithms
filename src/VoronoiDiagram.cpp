@@ -2,6 +2,8 @@
 
 std::vector<unsigned int> VoronoiDiagram::Perform(std::vector<unsigned int> data)
 {
+	if (this->state == AlgoState::FINISHED_SUCCESS)
+		return data;
 	std::vector<unsigned int> primaryGeometry = data;
 	std::vector<std::pair<int,int>> verticiesIndex;
 	auto size = data.size();
@@ -12,7 +14,7 @@ std::vector<unsigned int> VoronoiDiagram::Perform(std::vector<unsigned int> data
 			verticiesIndex.push_back(TransformIndexToCartesian(i, dimension));
 	}
 	data = DrawDiagram(data, verticiesIndex);
-
+	this->state = AlgoState::FINISHED_SUCCESS;
 	return data;
 }
 
@@ -61,5 +63,5 @@ AlgoState VoronoiDiagram::State()
 
 void VoronoiDiagram::ClearMemory()
 {
-
+	this->state = AlgoState::NONE;
 }

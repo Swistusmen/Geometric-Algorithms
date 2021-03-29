@@ -4,7 +4,7 @@
 
 /*TODO
 1. Add:
--checking app state
+-checking app state -DONE
 -checking algorithm state while changing it
 -alogrithm flow- if data suites to selevted kind of algorithm
 -add descriptions to algorithms and handling them

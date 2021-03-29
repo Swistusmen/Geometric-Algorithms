@@ -105,12 +105,11 @@ void Application::LoadData()
 	isDataSet = true;
 }
 
-AlgoState Application::PerformAlgorithm()
+void Application::PerformAlgorithm()
 {
-	myBoard.PerformAlgorithm();
+	this->algorithmState=myBoard.PerformAlgorithm();
 	data = myBoard.GetCurrentState();
 	DisplayColorful(data);
-	return AlgoState::NONE;
 }
 
 AlgoType Application::GetCurrentAlgorithm()
@@ -125,46 +124,9 @@ std::string Application::GetAlgorithmDescription()
 
 AlgoType Application::ChangeAlgorithmType(AlgoType type)
 {
-	if (type == this->algorithmType)
-	{
-		messages.push("You've already chosen this algorithm, nothing will happen\n");
-	}
-	switch (type)  {
-	case AlgoType::FindingWay: case AlgoType::BoundingBox: case AlgoType::FindingVerticies:
-	{
-		messages.push("Changing algorithm will cause loose of current data\n");
-		this->algorithmType = type;
-		myBoard.SetAlgorithm(type);
-		return this->algorithmType;
-
-	}break;
-	case AlgoType::VoronoiDiagram:
-	{
-		if (this->algorithmType == AlgoType::FindingVerticies)
-		{
-			this->algorithmType = type;
-			myBoard.SetAlgorithm(type);
-			return type;
-		}
-		messages.push("Changing algorithm will cause loose of current data\n");
-		this->algorithmType = type;
-		myBoard.SetAlgorithm(type);
-		return this->algorithmType;
-	}break;
-	case AlgoType::DelaunayTriangulation:
-	{
-		if (this->algorithmType == AlgoType::FindingVerticies||this->algorithmType==AlgoType::VoronoiDiagram)
-		{
-			this->algorithmType = type;
-			myBoard.SetAlgorithm(type);
-			return type;
-		}
-		messages.push("Changing algorithm will cause loose of current data\n");
-		this->algorithmType = type;
-		myBoard.SetAlgorithm(type);
-		return this->algorithmType;
-	}break;
-	}
+	this->algorithmType = type;
+	myBoard.SetAlgorithm(type);
+	return this->algorithmType;
 }
 
 void Application::ChangeInterfaceState()
@@ -222,9 +184,10 @@ void Application::Footer()
 	switch (this->algorithmState)
 	{
 	case AlgoState::PERFORMING: {std::cout << "Performing\n"; }break;
-	case AlgoState::FINISHED_FAILURE: {std::cout << "Finished successfully\n"; }break;
-	case AlgoState::FINISHED_SUCCESS: {std::cout << "Finished failure\n"; }break;
+	case AlgoState::FINISHED_FAILURE: {std::cout << "Finished failure\n"; }break;
+	case AlgoState::FINISHED_SUCCESS: {std::cout << "Finished successfully\n"; }break;
 	case AlgoState::NONE: {std::cout << "None\n"; }break;
 	}
 	SetConsoleTextAttribute(hConsole, 15);
+	
 }

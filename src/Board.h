@@ -4,7 +4,7 @@
 
 class Board {
 public:
-	virtual void PerformAlgorithm()=0;
+	virtual AlgoState PerformAlgorithm()=0;
 	virtual void SetAlgorithm(AlgoType type)=0;
 
 	virtual FieldRepresentation Representation()=0;
@@ -16,7 +16,7 @@ public:
 
 class BoardImplementation: public Board {
 public:
-	void PerformAlgorithm() override;
+	AlgoState PerformAlgorithm() override;
 	void SetAlgorithm(AlgoType type) override;
 	void LoadNewData(std::vector<unsigned int> data);
 

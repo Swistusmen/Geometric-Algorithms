@@ -21,7 +21,7 @@ public:
 	void Exit() override;
 
 	void LoadData() override;
-	AlgoState PerformAlgorithm() override;
+	void PerformAlgorithm() override;
 	AlgoType GetCurrentAlgorithm() override;
 	std::string GetAlgorithmDescription() override;
 	AlgoType ChangeAlgorithmType(AlgoType type) override;
