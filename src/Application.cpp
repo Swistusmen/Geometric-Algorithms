@@ -118,6 +118,13 @@ void Application::PerformAlgorithm()
 	}
 	this->algorithmState=myBoard.PerformAlgorithm();
 	data = myBoard.GetCurrentState();
+	if (algorithmState == AlgoState::FINISHED_SUCCESS)
+	{
+		switch (dataType) {
+		case AlgoType::FindingVerticies: {dataType = AlgoType::VoronoiDiagram; }break;
+		case AlgoType::VoronoiDiagram: {dataType = AlgoType::DelaunayTriangulation; }break;
+		}
+	}
 	DisplayColorful(data);
 }
 

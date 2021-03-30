@@ -7,8 +7,8 @@
 -checking app state -DONE
 -zero algorithm -DONE
 -alogrithm flow- if data suites to selevted kind of algorithm -DONE
--update writing- save data flow
--set up flows 
+-update writing- save data flow -DONE
+-set up flows DONE
 -add descriptions to algorithms and handling them
 2. Add Output DONE
 3. Simplify code as much as possible
