@@ -2,6 +2,47 @@
 
 namespace fs = std::filesystem;
 
+///////////////////////// READ WRITE FUNTIONS
+std::vector<std::string> GetSaves()
+{
+	std::vector<std::string > saves;
+	fs::path path = fs::current_path().parent_path().parent_path();
+	path += "\\saves";
+	for (const auto& entry : std::filesystem::directory_iterator(path))
+	{
+		saves.push_back(entry.path().filename().string());
+	}
+	return saves;
+}
+
+std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string filename)
+{
+	std::ifstream file;
+	auto path = fs::current_path().parent_path().parent_path();
+	path += "\\saves\\";
+	path += filename;
+	file.open(path);
+	std::string codedMatrix;
+	std::string algoType;
+	std::getline(file, algoType);
+	std::getline(file, codedMatrix);
+	return { DecodeFileToMatrix(codedMatrix),DecodeAlgorithm(algoType) };
+}
+
+std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data, AlgoType type)
+{
+	std::ofstream file;
+	auto path = fs::current_path().parent_path().parent_path();
+	path += "\\saves\\";
+	path += filename;
+	file.open(path);
+	file << EncodeAlgorithm(type);
+	file << CodeMatrix(data);
+	file.close();
+	return "Hello";
+}
+
+////////////////////////////// DISPLAY FUNCTIONS
 std::string ParseToMatrix(std::vector<unsigned int> input)
 {
 	auto size = input.size();
@@ -43,34 +84,7 @@ void DisplayColorful(std::vector<unsigned int> data)
 	system("pause");
 }
 
-std::pair<std::vector<unsigned int>,AlgoType> ReadInputFromFile(std::string filename)
-{
-	std::ifstream file;
-	auto path = fs::current_path().parent_path().parent_path();
-	path += "\\saves\\";
-	path += filename;
-	file.open(path);
-	std::string codedMatrix;
-	std::string algoType;
-	std::getline(file, algoType);
-	std::getline(file,codedMatrix);
-	return { DecodeFileToMatrix(codedMatrix),DecodeAlgorithm(algoType) };
-}
-
-std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data)
-{
-		std::ofstream file;
-		auto path = fs::current_path().parent_path().parent_path();
-		path += "\\saves\\";
-		path += filename;
-		file.open(path);
-		file << CodeMatrix(data);
-		file.close();
-		std::cout << CodeMatrix(data) << std::endl;
-		std::cout << path << std::endl;
-	return "Hello";
-}
-
+///////////////////////////////// INTERNAL FUNCTIONS
 std::string CodeMatrix(std::vector<unsigned int> data)
 {
 	std::string output = "";
@@ -135,18 +149,6 @@ std::vector<unsigned int> DecodeFileToMatrix(std::string file)
 	return data;
 }
 
-std::vector<std::string> GetSaves()
-{
-	std::vector<std::string > saves;
-	fs::path path = fs::current_path().parent_path().parent_path();
-	path += "\\saves";
-	for (const auto& entry : std::filesystem::directory_iterator(path))
-	{
-		saves.push_back(entry.path().filename().string());
-	}
-	return saves;
-}
-
 AlgoType DecodeAlgorithm(std::string name)
 {
 	int algo = std::stoi(name);
@@ -156,5 +158,18 @@ AlgoType DecodeAlgorithm(std::string name)
 	case 3: return AlgoType::FindingVerticies;
 	case 4: return AlgoType::VoronoiDiagram;
 	case 5: return AlgoType::DelaunayTriangulation;
+	}
+}
+
+std::string EncodeAlgorithm(AlgoType type)
+{
+	switch(type)
+	{
+	case AlgoType::None:{ return "0\n"; }break;
+	case AlgoType::BoundingBox:{ return "1\n"; }break;
+	case AlgoType::FindingWay:{ return "2\n"; }break;
+	case AlgoType::FindingVerticies:{ return "3\n"; }break;
+	case AlgoType::VoronoiDiagram:{ return "4\n"; }break;
+	case AlgoType::DelaunayTriangulation: { return "5\n"; }break;
 	}
 }

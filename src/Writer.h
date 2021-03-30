@@ -12,7 +12,7 @@ std::string ParseToMatrix(std::vector<unsigned int> input);
 
 std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string filename);
 
-std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data);
+std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data, AlgoType type);
 
 std::vector<std::string> GetSaves();
 
@@ -23,3 +23,5 @@ std::vector<unsigned int> DecodeFileToMatrix(std::string filename);
 void DisplayColorful(std::vector<unsigned int> data);
 
 AlgoType DecodeAlgorithm(std::string name);
+
+std::string EncodeAlgorithm(AlgoType type);
