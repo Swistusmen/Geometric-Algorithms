@@ -158,7 +158,7 @@ void Application::ChangeInterfaceState()
 
 AlgoType Application::ChangeAlgorithmType()
 {
-	std::cout << "Choose interface: \n 1. Bounding Box\n 2. Finding way\n 3. Finding verticies\n 4.Voronoi Daigram\n 5.Triangulation\n";
+	std::cout << "Choose interface: \n 1. Bounding Box\n 2. Finding way\n 3. Finding verticies\n 4. Voronoi Daigram\n 5. Triangulation\n";
 	int choice = -1;
 	while (choice < 1 || choice>5)
 	{
