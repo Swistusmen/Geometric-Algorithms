@@ -7,7 +7,12 @@
 -Improve C++ and project patterns skills
 
 <h2>Demands</h2>
-Project is designed to run on windows system, however, after simple changes in can be run under Unix systems
+
+-visual studio 2019 (project include windows libraries)
+
+-google test (every algorithm has test cases)
+
+-compiler which supports C++2017 features
 
 <h2>Build</h2>
 
@@ -16,4 +21,7 @@ mkdir build
 cd build
 cmake ..
 ```
+
+
+
 
