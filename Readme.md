@@ -1,14 +1,19 @@
-*Geometric Algorithms
+<h1>Geometric Algorithms</h1>
 
-**Purpose of this project:
+<h2>Purpose of this project</h2>
 
 -Learn geometric algorithms
 
 -Improve C++ and project patterns skills
 
-**Demands:
+<h2>Demands</h2>
+Project is designed to run on windows system, however, after simple changes in can be run under Unix systems
 
--Project is designed to run on windows system, however, after simple changes in can be run under Unix systems
+<h2>Build</h2>
 
-**Build:
+```
+mkdir build
+cd build
+cmake ..
+```
 
