@@ -21,7 +21,7 @@ For now there is need to add google test manually to the lib as directory is emp
 ```
 mkdir build
 cd build
-cmake -S .. -B <path tu build>
+cmake -S .. -B $(pwd)
 ```
 
 <h2>Implemented algorithms </h2>
