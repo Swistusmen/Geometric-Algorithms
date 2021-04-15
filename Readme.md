@@ -19,7 +19,7 @@
 ```
 mkdir build
 cd build
-cmake ..
+cmake -S .. -B <path tu build>
 ```
 
 <h2>Implemented algorithms </h2>
