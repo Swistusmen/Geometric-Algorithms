@@ -16,10 +16,12 @@
 
 <h2>Build</h2>
 
+For now there is need to add google test manually to the lib as directory is empty
+
 ```
 mkdir build
 cd build
-cmake ..
+cmake -S .. -B $(pwd)
 ```
 
 <h2>Implemented algorithms </h2>
