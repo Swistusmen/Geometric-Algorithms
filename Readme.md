@@ -16,6 +16,8 @@
 
 <h2>Build</h2>
 
+For now there is need to add google test manually to the lib as directory is empty
+
 ```
 mkdir build
 cd build
