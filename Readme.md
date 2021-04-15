@@ -49,5 +49,7 @@ cmake -S .. -B $(pwd)
 -algorithms: other ways of finding paths, checking if figure is contiunues, blending figures, ncellular automata
 
 
-
+<h4>Currently adding gui</h4>
+https://stackoverflow.com/questions/4028604/add-qt-to-existing-visual-studio-c-project
+https://forum.qt.io/topic/114299/convert-visual-studio-2017-solution-to-use-qt/2
 
