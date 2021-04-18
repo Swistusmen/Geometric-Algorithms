@@ -12,17 +12,34 @@
 
 -google test (every algorithm has test cases)
 
--compiler which supports C++2017 features
+-compiler which supports C++2017 features (I'm compiling using msvc_2019)
 
 <h2>Build</h2>
 
-For now there is need to add google test manually to the lib as directory is empty
-
+For now there is need to add google test manually to the lib as directory is empty (will be made as subdirectory)</br>
+Project demand qt 5.15.2, in the future cmake will be modified to allow creting version without GUI
 ```
 mkdir build
 cd build
 cmake -S .. -B $(pwd)
 ```
+Project is build, by there is need to made such a configuration:
+
+-load project, change <keyword> to QtVS_v302, reload project
+
+-Convert custom steps to MS/Qt build
+
+-in Properties, select modules: Core, XML, Widget, GUI, select QtInstallation to 5.15.2 (if you haven't create it, create one)
+
+-Properties/ Qt Settings/ Paths/ Additional header search path and Additional Qt library search path- you need to paste your paths into them
+
+-save
+
+-load project, change Keyword back to Win32Proj
+
+-you should be able to use qt libraries from now
+
+-<b>If it is not possible try to use backupCmakeLists.txt (2) - they have versio without qt, probably there will be need to change source code
 
 <h2>Implemented algorithms </h2>
 
