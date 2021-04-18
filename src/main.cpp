@@ -2,6 +2,15 @@
 #include "Writer.h"
 #include "Application.h"
 
+#include <QtWidgets>
+
+#ifdef QT_VERSION >= 0x040100
+#define QT "Yes"
+#else
+#define QT "No"
+#endif
+
+
 /*TODO
 1. Add:
 -checking app state -DONE
@@ -16,9 +25,11 @@
 5. Add Input and creating data
 */
 
-int main()
+int main(int argc, char* argv[])
 {
-	Application app;
-	app.Run();
+	std::cout << QT << std::endl;
+	QApplication app(argc,argv,331522);
+	//Application app;
+	//app.Run();
 	return 0;
 }
