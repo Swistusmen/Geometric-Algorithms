@@ -49,5 +49,17 @@ cmake -S .. -B $(pwd)
 -algorithms: other ways of finding paths, checking if figure is contiunues, blending figures, ncellular automata
 
 
+<h4>Currently adding gui</h4>
+https://stackoverflow.com/questions/4028604/add-qt-to-existing-visual-studio-c-project
+https://forum.qt.io/topic/114299/convert-visual-studio-2017-solution-to-use-qt/2
 
+Steps done to switch to Qt:
+
+-changing on CMakeList.txt: Adding set (CMAKE_PREFIX_PATH "C:\\Qt\\5.9.9\\msvc2017_64\\") to main, find_package(Qt5 COMPONENTS Widgets REQUIRED), find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+-Switching to Qt project by changin .vcxproj <Keyword> to different options
+  
+  -using Qt5.9.9
+  
+  -always couldn't find Qt files
 
