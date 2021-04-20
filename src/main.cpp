@@ -2,7 +2,8 @@
 #include "Writer.h"
 #include "Application.h"
 
-#include <QtWidgets>
+#include <QtWidgets/qapplication.h>
+#include <qwidget.h>
 
 #ifdef QT_VERSION >= 0x040100
 #define QT "Yes"
@@ -24,12 +25,26 @@
 4. Start making GUI
 5. Add Input and creating data
 */
-
+/*
 int main(int argc, char* argv[])
 {
 	std::cout << QT << std::endl;
-	QApplication app(argc,argv,331522);
+	QApplication app(argc,argv);
 	//Application app;
 	//app.Run();
 	return 0;
+}
+*/
+
+
+int main(int argc, char* argv[])
+{
+	QApplication app(argc, argv);
+	QWidget window;
+	window.resize(320, 240);
+	window.show();
+	window.setWindowTitle(
+		QApplication::translate("toplevel", "Top-level widget"));
+	
+	return app.exec();
 }
