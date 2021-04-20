@@ -23,23 +23,15 @@ mkdir build
 cd build
 cmake -S .. -B $(pwd)
 ```
-Project is build, by there is need to made such a configuration:
+Go to C:\Windows\System32\cmd.exe, run
 
--load project, change <keyword> to QtVS_v302, reload project
+```
+windeployqt.exe {Project path}\build\src\Debug
+```
 
--Convert custom steps to MS/Qt build
+<b> Warning </b>
+I'm not completly sure if this steps will be repeatable on other windows machines, first you need to install qt in vs, what is hardest part
 
--in Properties, select modules: Core, XML, Widget, GUI, select QtInstallation to 5.15.2 (if you haven't create it, create one)
-
--Properties/ Qt Settings/ Paths/ Additional header search path and Additional Qt library search path- you need to paste your paths into them
-
--save
-
--load project, change Keyword back to Win32Proj
-
--you should be able to use qt libraries from now
-
--<b>If it is not possible try to use backupCmakeLists.txt (2) - they have versio without qt, probably there will be need to change source code
 
 <h2>Implemented algorithms </h2>
 
@@ -66,18 +58,15 @@ Project is build, by there is need to made such a configuration:
 -algorithms: other ways of finding paths, checking if figure is contiunues, blending figures, ncellular automata
 
 
-<h4>Currently adding gui</h4>
+<h4>Important about integrating cpp project with qt</h4>
 https://stackoverflow.com/questions/4028604/add-qt-to-existing-visual-studio-c-project
+
 https://forum.qt.io/topic/114299/convert-visual-studio-2017-solution-to-use-qt/2
 
 Steps done to switch to Qt (the best solution, not working now):
 
--changing on CMakeList.txt: Adding set (CMAKE_PREFIX_PATH "C:\\Qt\\5.9.9\\msvc2017_64\\") to main, find_package(Qt5 COMPONENTS Widgets REQUIRED), find_package(Qt5 COMPONENTS Widgets REQUIRED)
+-proper installation (for me 5.15.2 worked, but I had problems with 6.* and 5.9.9, maybe now I could work with it)- installer 2.4, run out of the VS
 
--Switching to Qt project by changin .vcxproj <Keyword> to different options
-  
-  -using Qt5.9.9
-  
-  -always couldn't find Qt files
+-changes in CMakeLists.txt- CMAKE_PREFIX_PATH need to be set, libraries should be dll files added by windeployqt.exe, there is also possiblitiy to add them by install in cmake probably
 
-probably ther is a need to use install command for dll files in build/src
+-no changes was needed in VS, but important things an be changed:
