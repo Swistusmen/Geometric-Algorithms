@@ -80,4 +80,4 @@ Steps done to switch to Qt (the best solution, not working now):
   
   -always couldn't find Qt files
 
-probably ther is a need to use install command for dll files
+probably ther is a need to use install command for dll files in build/src
