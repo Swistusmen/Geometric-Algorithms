@@ -3,9 +3,7 @@ project(GeometryAlgorithms)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set (CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64\\")
-
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+set (CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64\\lib\\cmake")
 
 include_directories(src)
 
