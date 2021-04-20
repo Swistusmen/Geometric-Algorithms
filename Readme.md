@@ -70,7 +70,7 @@ Project is build, by there is need to made such a configuration:
 https://stackoverflow.com/questions/4028604/add-qt-to-existing-visual-studio-c-project
 https://forum.qt.io/topic/114299/convert-visual-studio-2017-solution-to-use-qt/2
 
-Steps done to switch to Qt:
+Steps done to switch to Qt (the best solution, not working now):
 
 -changing on CMakeList.txt: Adding set (CMAKE_PREFIX_PATH "C:\\Qt\\5.9.9\\msvc2017_64\\") to main, find_package(Qt5 COMPONENTS Widgets REQUIRED), find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
@@ -80,3 +80,4 @@ Steps done to switch to Qt:
   
   -always couldn't find Qt files
 
+probably ther is a need to use install command for dll files
