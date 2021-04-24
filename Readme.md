@@ -69,4 +69,10 @@ Steps done to switch to Qt (the best solution, not working now):
 
 -changes in CMakeLists.txt- CMAKE_PREFIX_PATH need to be set, libraries should be dll files added by windeployqt.exe, there is also possiblitiy to add them by install in cmake probably
 
--no changes was needed in VS, but important things an be changed:
+-after adding file with Q_OBJECT macro there is need to run 
+
+```
+qmake
+```
+
+in src file and rebuild project. The purpose of this action is to create moc_file.cpp. 
