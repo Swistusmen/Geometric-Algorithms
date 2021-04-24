@@ -22,7 +22,8 @@ HEADERS += ./Algorithm.h \
     ./Strategy.h \
     ./Utilities.h \
     ./VoronoiDiagram.h \
-    ./Writer.h
+    ./Writer.h \
+    ./QMainInterface.h \
 SOURCES += ./Application.cpp \
     ./Board.cpp \
     ./BoundingBox.cpp \
@@ -33,4 +34,5 @@ SOURCES += ./Application.cpp \
     ./Strategy.cpp \
     ./VoronoiDiagram.cpp \
     ./Writer.cpp \
-    ./main.cpp
+    ./main.cpp \
+    ./QMainInterface.cpp \

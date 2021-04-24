@@ -5,6 +5,8 @@
 #include <QtWidgets/qapplication.h>
 #include <qwidget.h>
 #include <qpushbutton.h>
+#include "QMainInterface.h"
+
 
 #ifdef QT_VERSION >= 0x040100
 #define QT "Yes"
@@ -41,13 +43,16 @@ int main(int argc, char* argv[])
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
-	
+	/*
 	QWidget window;
 	QPushButton pushButton("Hello world",&window);
 	window.resize(320, 240);
 	window.show();
 	window.setWindowTitle(
 		QApplication::translate("toplevel", "Top-level widget"));
-	
+	*/
+	QMainInterface qmain;
+	qmain.show();
 	return app.exec();
 }
+
