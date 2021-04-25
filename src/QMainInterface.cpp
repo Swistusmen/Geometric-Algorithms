@@ -3,10 +3,7 @@
 
 QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 {
-	setFixedSize(320, 240);
+	//setFixedSize(366, 300);
 
-	algoInterface = new QPushButton("Perform algorithms",this);
-	creativeInterface = new QPushButton("Data input",this);
-
-	//ui.setupUi(this);
+	ui.setupUi(this);
 }

@@ -6,40 +6,92 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>453</width>
+    <height>405</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="algoInterface">
+  <widget class="QGraphicsView" name="WelcomePicture">
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>190</y>
-     <width>75</width>
-     <height>23</height>
+     <y>90</y>
+     <width>291</width>
+     <height>221</height>
     </rect>
    </property>
-   <property name="text">
-    <string>algorithms</string>
+   <property name="transformationAnchor">
+    <enum>QGraphicsView::AnchorViewCenter</enum>
+   </property>
+   <property name="resizeAnchor">
+    <enum>QGraphicsView::AnchorViewCenter</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="creativInterface">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>190</y>
-     <width>75</width>
-     <height>23</height>
+     <x>150</x>
+     <y>340</y>
+     <width>158</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="algoInterface">
+      <property name="text">
+       <string>algorithms</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">interfaceButtons</string>
+      </attribute>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="creativInterface">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Data</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">interfaceButtons</string>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>39</y>
+     <width>131</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Data</string>
+    <string>Geometrical Algorithms</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>310</y>
+     <width>160</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="interfaceButtons"/>
+ </buttongroups>
 </ui>

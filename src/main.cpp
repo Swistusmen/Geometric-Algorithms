@@ -6,7 +6,6 @@
 #include <qwidget.h>
 #include <qpushbutton.h>
 #include "QMainInterface.h"
-#include "../build/src/ui_QMainInterface.h"
 
 
 #ifdef QT_VERSION >= 0x040100
@@ -34,8 +33,6 @@ int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 	QMainInterface qmain;
-	Ui::Form ui;
-	ui.setupUi(&qmain);
 	qmain.show();
 	return app.exec();
 }
