@@ -6,6 +6,7 @@
 #include <qwidget.h>
 #include <qpushbutton.h>
 #include "QMainInterface.h"
+#include "../build/src/ui_QMainInterface.h"
 
 
 #ifdef QT_VERSION >= 0x040100
@@ -28,30 +29,13 @@
 4. Start making GUI
 5. Add Input and creating data
 */
-/*
-int main(int argc, char* argv[])
-{
-	std::cout << QT << std::endl;
-	QApplication app(argc,argv);
-	//Application app;
-	//app.Run();
-	return 0;
-}
-*/
-
 
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
-	/*
-	QWidget window;
-	QPushButton pushButton("Hello world",&window);
-	window.resize(320, 240);
-	window.show();
-	window.setWindowTitle(
-		QApplication::translate("toplevel", "Top-level widget"));
-	*/
 	QMainInterface qmain;
+	Ui::Form ui;
+	ui.setupUi(&qmain);
 	qmain.show();
 	return app.exec();
 }
