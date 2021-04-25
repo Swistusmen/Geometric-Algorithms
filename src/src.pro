@@ -30,7 +30,7 @@ HEADERS += Algorithm.h \
            Utilities.h \
            VoronoiDiagram.h \
            Writer.h \
-           QMainInterface.h
+           QMainInterface.h 
 SOURCES += Application.cpp \
            Board.cpp \
            BoundingBox.cpp \
@@ -43,3 +43,5 @@ SOURCES += Application.cpp \
            VoronoiDiagram.cpp \
            Writer.cpp \
            QMainInterface.cpp 
+FORMS+=    QMainInterface.ui
+
