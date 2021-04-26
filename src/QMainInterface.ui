@@ -6,40 +6,96 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>482</width>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>370</y>
+     <width>166</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>20</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Geometrical Algorithms</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="welcom_picture">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>481</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../assets/russel.jpg</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="creativInterface">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>370</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string>Data</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">interfaceButtons</string>
+   </attribute>
+  </widget>
   <widget class="QPushButton" name="algoInterface">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>190</y>
-     <width>75</width>
+     <x>230</x>
+     <y>370</y>
+     <width>79</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>algorithms</string>
    </property>
-  </widget>
-  <widget class="QPushButton" name="creativInterface">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>190</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Data</string>
-   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">interfaceButtons</string>
+   </attribute>
   </widget>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="interfaceButtons"/>
+ </buttongroups>
 </ui>

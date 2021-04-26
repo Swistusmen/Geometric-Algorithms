@@ -2,10 +2,8 @@
 #define QMAININTERFACE_H
 
 #include <qwidget.h>
-//#include "ui_QMainInterface.h"
-//#include "../build/src/ui_MainWindow.h"
-//#include "../build/src/ui_QMainWindow.h"
 #include "../build/src/ui_QMainInterface.h"
+#include <qstringbuilder.h>
 
 
 class QPushButton;
@@ -16,14 +14,25 @@ public:
 	explicit QMainInterface(QWidget* parent=0);
 
 signals:
-
+	void algoWasClicked() {
+		emit(test_1);
+	};
+	void dataWasClicked() {
+		emit(test_2);
+	}
 public slots:
+	void changeTitle(QString display) {
+		ui.label->setText(display);
+	}
+private:  //variables
+	Ui::Form ui;
 
-private:
-	QPushButton *algoInterface;
-	QPushButton *creativeInterface;
+	QString test_1="Geometrical Algorithms";
+	QString test_2="Data";
+	QString to_display = "Geometrical Algorithms";
 
-	//Ui::Form ui;
+private: //methods
+
 };
 
 #endif
