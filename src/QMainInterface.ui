@@ -6,61 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>453</width>
-    <height>405</height>
+    <width>482</width>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGraphicsView" name="WelcomePicture">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>90</y>
-     <width>291</width>
-     <height>221</height>
-    </rect>
-   </property>
-   <property name="transformationAnchor">
-    <enum>QGraphicsView::AnchorViewCenter</enum>
-   </property>
-   <property name="resizeAnchor">
-    <enum>QGraphicsView::AnchorViewCenter</enum>
-   </property>
-  </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>340</y>
-     <width>158</width>
+     <y>370</y>
+     <width>166</width>
      <height>25</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="algoInterface">
-      <property name="text">
-       <string>algorithms</string>
-      </property>
-      <attribute name="buttonGroup">
-       <string notr="true">interfaceButtons</string>
-      </attribute>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="creativInterface">
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Data</string>
-      </property>
-      <attribute name="buttonGroup">
-       <string notr="true">interfaceButtons</string>
-      </attribute>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
     </item>
    </layout>
   </widget>
@@ -68,7 +32,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>39</y>
+     <y>20</y>
      <width>131</width>
      <height>21</height>
     </rect>
@@ -77,16 +41,56 @@
     <string>Geometrical Algorithms</string>
    </property>
   </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
+  <widget class="QLabel" name="welcom_picture">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>481</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../assets/russel.jpg</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="creativInterface">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>310</y>
-     <width>160</width>
-     <height>80</height>
+     <y>370</y>
+     <width>75</width>
+     <height>23</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout"/>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string>Data</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">interfaceButtons</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="algoInterface">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>370</y>
+     <width>79</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>algorithms</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">interfaceButtons</string>
+   </attribute>
   </widget>
  </widget>
  <resources/>
