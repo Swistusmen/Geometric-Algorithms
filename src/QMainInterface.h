@@ -4,7 +4,7 @@
 #include <qwidget.h>
 #include "../build/src/ui_QMainInterface.h"
 #include <qstringbuilder.h>
-
+#include "ButtonStates.h"
 
 class QPushButton;
 class QMainInterface : public QWidget {
@@ -14,25 +14,30 @@ public:
 	explicit QMainInterface(QWidget* parent=0);
 
 signals:
-	void algoWasClicked() {
-		emit(test_1);
-	};
-	void dataWasClicked() {
-		emit(test_2);
-	}
+	
 public slots:
-	void changeTitle(QString display) {
-		ui.label->setText(display);
+	void changeTitle() {
+		auto text = this->WhichButton();
+		switch (text) {
+		case AppButton::None : {
+			
+		}break;
+		case AppButton::SwitchToAlgorithms: {
+			ui.label->setText("Algorithms");
+			ui.stackedWidget->setCurrentIndex(1);
+		}break;
+		case AppButton::SwitchToData: {
+			ui.label->setText("Data");
+			ui.stackedWidget->setCurrentIndex(0);
+		}break;
+		}
 	}
 private:  //variables
 	Ui::Form ui;
 
-	QString test_1="Geometrical Algorithms";
-	QString test_2="Data";
-	QString to_display = "Geometrical Algorithms";
-
+	std::vector<std::tuple<QString, bool>> buttons{ {"Algorithms",0},{"Data",0} };
 private: //methods
-
+	AppButton WhichButton();
 };
 
 #endif

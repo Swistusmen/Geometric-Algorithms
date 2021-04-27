@@ -6,33 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
-    <height>418</height>
+    <width>597</width>
+    <height>462</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>370</y>
-     <width>166</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout"/>
-    </item>
-   </layout>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>20</y>
+     <x>230</x>
+     <y>10</y>
      <width>131</width>
      <height>21</height>
     </rect>
@@ -41,56 +26,97 @@
     <string>Geometrical Algorithms</string>
    </property>
   </widget>
-  <widget class="QLabel" name="welcom_picture">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>220</x>
+     <y>400</y>
+     <width>164</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="creativInterface">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Data</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">interfaceButtons</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="algoInterface">
+        <property name="text">
+         <string>algorithms</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">interfaceButtons</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
      <y>50</y>
-     <width>481</width>
-     <height>301</height>
+     <width>581</width>
+     <height>331</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../assets/russel.jpg</pixmap>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="creativInterface">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>370</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="text">
-    <string>Data</string>
-   </property>
-   <attribute name="buttonGroup">
-    <string notr="true">interfaceButtons</string>
-   </attribute>
-  </widget>
-  <widget class="QPushButton" name="algoInterface">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>370</y>
-     <width>79</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>algorithms</string>
-   </property>
-   <attribute name="buttonGroup">
-    <string notr="true">interfaceButtons</string>
-   </attribute>
+   <widget class="QWidget" name="page">
+    <widget class="QLabel" name="welcom_picture">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>71</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../assets/russel.jpg</pixmap>
+     </property>
+    </widget>
+    <widget class="QCalendarWidget" name="calendarWidget">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>20</y>
+       <width>304</width>
+       <height>190</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_2">
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>130</y>
+       <width>111</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Siemka</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
