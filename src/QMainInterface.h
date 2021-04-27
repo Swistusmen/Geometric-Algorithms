@@ -24,9 +24,11 @@ public slots:
 		}break;
 		case AppButton::SwitchToAlgorithms: {
 			ui.label->setText("Algorithms");
+			ui.stackedWidget->setCurrentIndex(1);
 		}break;
 		case AppButton::SwitchToData: {
 			ui.label->setText("Data");
+			ui.stackedWidget->setCurrentIndex(0);
 		}break;
 		}
 	}

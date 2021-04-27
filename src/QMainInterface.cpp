@@ -15,6 +15,7 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 			this, &QMainInterface::changeTitle);
 	connect(ui.creativInterface, &QPushButton::pressed,
 		this, &QMainInterface::changeTitle);
+	
 	//initializing main image
 
 }
