@@ -6,6 +6,7 @@
 #include <qwidget.h>
 #include <qpushbutton.h>
 #include "QMainInterface.h"
+#include "QDrawingBoard.h"
 
 
 #ifdef QT_VERSION >= 0x040100
@@ -34,6 +35,8 @@ int main(int argc, char* argv[])
 	QApplication app(argc, argv);
 	QMainInterface qmain;
 	qmain.show();
+	QDrawingBoard qsecond;
+	qsecond.show();
 	return app.exec();
 }
 

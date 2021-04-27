@@ -1,3 +1,4 @@
+#pragma once
 #ifndef QMAININTERFACE_H
 #define QMAININTERFACE_H
 

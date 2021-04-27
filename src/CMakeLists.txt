@@ -6,6 +6,7 @@ set(SOURCES ${SOURCES})
 
 find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 
+
 qt5_wrap_ui(UI_SOURCES QMainInterface.ui)
 
 add_executable(${BINARY}_run ${SOURCES} ${UI_SOURCES})
