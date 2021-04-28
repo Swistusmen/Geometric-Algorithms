@@ -19,6 +19,9 @@
 For now there is need to add google test manually to the lib as directory is empty (will be made as subdirectory)</br>
 Project demand qt 5.15.2, in the future cmake will be modified to allow creting version without GUI
 ```
+cd src
+qmake
+cd ..
 mkdir build
 cd build
 cmake -S .. -B $(pwd)
