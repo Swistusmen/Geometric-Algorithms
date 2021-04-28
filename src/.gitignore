@@ -1,0 +1,5 @@
+release/
+debug/
+src.vcxproj.user
+src.vcxproj.filters
+
