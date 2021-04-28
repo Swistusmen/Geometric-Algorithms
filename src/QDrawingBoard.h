@@ -5,6 +5,8 @@
 #include <qwidget.h>
 #include <qframe.h>
 #include <qpushbutton.h>
+#include <memory>
+#include <qpainter.h>
 
 class QDrawingBoard : public QFrame {
 	Q_OBJECT
@@ -15,11 +17,14 @@ public:
 signals:
 
 public slots:
-	
+	void PresentAlgorithm();
 private:  //variables
-	QPushButton* pushButton;
+	QPainter* paint;
+	QPen* pen;
+	QPushButton* button;
+	bool isSquareDisplayd = false;
 private: //methods
-	
+	virtual void QDrawingBoard::paintEvent(QPaintEvent* event);
 };
 
 #endif

@@ -15,7 +15,7 @@ public:
 	explicit QMainInterface(QWidget* parent=0);
 
 signals:
-	
+
 public slots:
 	void changeTitle() {
 		auto text = this->WhichButton();

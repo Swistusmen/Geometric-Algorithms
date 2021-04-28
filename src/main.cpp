@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
 	qmain.show();
 	QDrawingBoard qsecond;
 	qsecond.show();
+	
 	return app.exec();
 }
 

@@ -4,13 +4,10 @@
 
 QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 {
-	//setFixedSize(366, 300);
-
 	ui.setupUi(this);
 	ui.algoInterface->setCheckable(true);
 	ui.creativInterface->setCheckable(true);
-	//connect(this, SIGNAL(QMainInterface::algoWasClicked()),
-	//	this, SLOT(QMainInterface::changeTitle(QString)));
+
 	connect(ui.algoInterface, &QPushButton::pressed,
 			this, &QMainInterface::changeTitle);
 	connect(ui.creativInterface, &QPushButton::pressed,
