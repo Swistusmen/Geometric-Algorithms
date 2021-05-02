@@ -4,43 +4,15 @@
 QDrawingBoard::QDrawingBoard(QWidget* parent) :QFrame(parent) {
 	this->setFixedSize(400, 400);
 
-	
-	button = new QPushButton("Draw", this);
-
 	colorPallete.insert({ 0, Qt::white });
 	colorPallete.insert({ 1,Qt::black });
 	colorPallete.insert({ 2, Qt::red });
-
-	connect(button, &QPushButton::pressed,
-		this, &QDrawingBoard::PresentAlgorithm);
 }
 
 void QDrawingBoard::PresentAlgorithm()
 {
 	repaint();
 }
-/*
-void QDrawingBoard::paintEvent(QPaintEvent* event)
-{
-
-	if (!isSquareDisplayd) {
-		pen = new QPen(Qt::red);
-		pen->setWidth(100);
-		auto painter = std::make_unique<QPainter>(this);
-		painter->setPen(*pen);
-		painter->drawPoint(300+50, 300+50);
-	}
-	else {
-		std::cout << "Helo world\n";
-		pen = new QPen(Qt::black);
-		pen->setWidth(30);
-		auto painter = std::make_unique<QPainter>(this);
-		painter->setPen(*pen);
-		painter->drawPoint(100, 100);
-	}
-	isSquareDisplayd = !isSquareDisplayd;
-}
-*/
 
 void QDrawingBoard::paintEvent(QPaintEvent* event)
 {
@@ -64,11 +36,7 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 		}
 	}
 	//setting up size of a cell
-	//pen = new QPen();
 	const int cellWidth = this->width() / dim;
-	//pen->setWidth(cellWidth);
-	//auto painter = std::make_unique<QPainter>(this);
-	//painter->setPen(*pen);
 	const int noCollors = colorsOnThePicture.size();
 	std::cout << noCollors << " kolorow\n";
 	std::cout << this->width() << " " << this->height() << "\n";
@@ -84,8 +52,6 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 			if (currentPicture[j] == i)
 			{
 				painter->drawPoint(((j % dim) * cellWidth)+cellWidth/2, ((static_cast<int>(j / dim)) * cellWidth)+cellWidth/2);
-				//painter->drawRect(QRect((j % dim) * cellWidth, (static_cast<int>(j / dim)) * cellWidth, cellWidth, cellWidth));
-				std::cout << "width " << (j % dim) * cellWidth << "height " << (static_cast<int>(j / dim)) * cellWidth << std::endl;
 			}
 		}
 	}
@@ -95,4 +61,14 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 void QDrawingBoard::LoadNewData(std::vector<unsigned int> data)
 {
 	currentPicture = data;
+}
+
+void QDrawingBoard::SetUpCollorPallete(std::vector < std::array<int, 3>> colors)
+{
+	const int noCollors = colors.size();
+	for (int i = 0; i < noCollors; i++)
+	{
+		auto color = colors[i];
+		colorPallete.insert({ i,QColor(color[0],color[1],color[2]) });
+	}
 }

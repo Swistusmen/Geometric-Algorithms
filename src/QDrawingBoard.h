@@ -10,7 +10,7 @@
 #include <vector>
 #include <map>
 #include "qcolor.h"
-#include <stack>
+#include <array>
 
 /*
 1. Add posibility to draw a vector of values
@@ -27,7 +27,7 @@ public:
 	explicit QDrawingBoard(QWidget* parent = 0);
 
 	void LoadNewData(std::vector<unsigned int> data);
-
+	void SetUpCollorPallete(std::vector < std::array<int, 3>> colors);
 signals:
 
 public slots:

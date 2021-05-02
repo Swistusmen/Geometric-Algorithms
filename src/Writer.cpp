@@ -173,3 +173,20 @@ std::string EncodeAlgorithm(AlgoType type)
 	case AlgoType::DelaunayTriangulation: { return "5\n"; }break;
 	}
 }
+
+std::vector<std::array<int, 3>> ReadPalleteOfColors()
+{
+	std::vector<std::array<int, 3>> colors;
+	std::ifstream file;
+	file.open("../../src/colors.txt");
+	std::string a, b, c;
+	while (!file.eof())
+	{
+		file >> a;
+		file >> b;
+		file >> c;
+		colors.push_back({ std::stoi(a),std::stoi(b),std::stoi(c) });
+	}
+	file.close();
+	return colors;
+}

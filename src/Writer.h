@@ -7,6 +7,7 @@
 #include <sstream>
 #include <Windows.h>
 #include "Utilities.h"
+#include <array>
 
 std::string ParseToMatrix(std::vector<unsigned int> input);
 
@@ -25,3 +26,5 @@ void DisplayColorful(std::vector<unsigned int> data);
 AlgoType DecodeAlgorithm(std::string name);
 
 std::string EncodeAlgorithm(AlgoType type);
+
+std::vector<std::array<int, 3>> ReadPalleteOfColors();
