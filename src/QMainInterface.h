@@ -6,6 +6,8 @@
 #include "../build/src/ui_QMainInterface.h"
 #include <qstringbuilder.h>
 #include "ButtonStates.h"
+#include "QDrawingBoard.h"
+#include "Writer.h"
 
 class QPushButton;
 class QMainInterface : public QWidget {
@@ -37,6 +39,7 @@ private:  //variables
 	Ui::Form ui;
 
 	std::vector<std::tuple<QString, bool>> buttons{ {"Algorithms",0},{"Data",0} };
+	QDrawingBoard* board;
 private: //methods
 	AppButton WhichButton();
 };

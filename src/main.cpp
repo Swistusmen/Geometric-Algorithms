@@ -35,8 +35,8 @@ int main(int argc, char* argv[])
 	QApplication app(argc, argv);
 	QMainInterface qmain;
 	qmain.show();
+	/*
 	auto colors=ReadPalleteOfColors();
-	
 	std::vector<unsigned int> input1{ 0,0,1,2 };
 	std::vector<unsigned int> input2{ 0,1,0,0 };
 	std::vector<unsigned int> input3{ 1,0,0,0,1,0,0,0,1 };
@@ -70,7 +70,8 @@ int main(int argc, char* argv[])
 	QDrawingBoard qsecond;
 	qsecond.LoadNewData(input4);
 	qsecond.SetUpCollorPallete(colors);
-	qsecond.show();
+	*/
+	//qsecond.show();
 	
 	return app.exec();
 	

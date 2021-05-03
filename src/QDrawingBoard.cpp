@@ -3,10 +3,6 @@
 
 QDrawingBoard::QDrawingBoard(QWidget* parent) :QFrame(parent) {
 	this->setFixedSize(400, 400);
-
-	colorPallete.insert({ 0, Qt::white });
-	colorPallete.insert({ 1,Qt::black });
-	colorPallete.insert({ 2, Qt::red });
 }
 
 void QDrawingBoard::PresentAlgorithm()
@@ -38,8 +34,6 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 	//setting up size of a cell
 	const int cellWidth = this->width() / dim;
 	const int noCollors = colorsOnThePicture.size();
-	std::cout << noCollors << " kolorow\n";
-	std::cout << this->width() << " " << this->height() << "\n";
 	for (int i = 0; i < noCollors; i++)
 	{
 		pen = new QPen();
