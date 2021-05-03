@@ -41,6 +41,26 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	board->SetUpCollorPallete(colors);
 	ui.board_place->addWidget(board,Qt::AlignCenter);
 
+	//just testing how things will work
+	QString find_way = "Finding Way";
+	QString triangulation = "Triangulation";
+	QString notInitialized = "Not initialized";
+	ui.algo_type->addItem(notInitialized);
+	ui.algo_type->addItem(find_way);
+	ui.algo_type->addItem(triangulation);
+
+	mapper = new QSignalMapper(this);
+
+	connect(mapper, SIGNAL(mapped(QString)), this, SLOT(WriteButton(QString)));
+
+	mapper->setMapping(ui.clear_memory, QString("Clear Memory"));
+	mapper->setMapping(ui.perform_whole_algorithm, "Perform whole Algorithm");
+	mapper->setMapping(ui.next_step, "Next step");
+
+	connect(ui.clear_memory, SIGNAL(pressed()), mapper, SLOT(map()));
+	connect(ui.next_step, SIGNAL(clicked()), mapper, SLOT(map()));
+	connect(ui.perform_whole_algorithm, SIGNAL(clicked()), mapper, SLOT(map()));
+
 	connect(ui.algoInterface, &QPushButton::pressed,
 			this, &QMainInterface::changeTitle);
 	connect(ui.creativInterface, &QPushButton::pressed,

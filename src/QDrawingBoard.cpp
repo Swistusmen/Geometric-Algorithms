@@ -18,7 +18,6 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 	std::vector<unsigned int> colorsOnThePicture;
 	for (int i = 0; i < noCells; i++)
 	{
-		std::cout << currentPicture[i] << std::endl;
 		bool isInStack = false;
 		if (std::find(colorsOnThePicture.begin(), colorsOnThePicture.end(),
 			currentPicture[i])==colorsOnThePicture.end())

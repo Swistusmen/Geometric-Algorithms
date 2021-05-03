@@ -8,6 +8,7 @@
 #include "ButtonStates.h"
 #include "QDrawingBoard.h"
 #include "Writer.h"
+#include <qsignalmapper.h>
 
 class QPushButton;
 class QMainInterface : public QWidget {
@@ -35,11 +36,18 @@ public slots:
 		}break;
 		}
 	}
+
+	void WriteButton(QString buttonName)
+	{
+		std::cout << "im here\n";
+		std::cout << buttonName.toUtf8().constData() << std::endl;
+	}
 private:  //variables
 	Ui::Form ui;
 
 	std::vector<std::tuple<QString, bool>> buttons{ {"Algorithms",0},{"Data",0} };
 	QDrawingBoard* board;
+	QSignalMapper* mapper;
 private: //methods
 	AppButton WhichButton();
 };

@@ -67,7 +67,7 @@
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="algo_type">
      <property name="geometry">
       <rect>
        <x>490</x>
@@ -145,7 +145,7 @@
       <string>Unread</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Next_step">
+    <widget class="QPushButton" name="next_step">
      <property name="geometry">
       <rect>
        <x>490</x>
