@@ -2,4 +2,6 @@ release/
 debug/
 src.vcxproj.user
 src.vcxproj.filters
+src.vcxproj
+
 
