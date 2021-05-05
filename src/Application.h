@@ -5,6 +5,7 @@
 #include <stack>
 #include <Windows.h>
 
+//command line application
 
 #define DEFAULT_BOARD_SIZE 100
 

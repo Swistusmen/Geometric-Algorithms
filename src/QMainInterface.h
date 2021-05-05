@@ -20,34 +20,16 @@ public:
 signals:
 
 public slots:
-	void changeTitle() {
-		auto text = this->WhichButton();
-		switch (text) {
-		case AppButton::None : {
-			
-		}break;
-		case AppButton::SwitchToAlgorithms: {
-			ui.label->setText("Algorithms");
-			ui.stackedWidget->setCurrentIndex(1);
-		}break;
-		case AppButton::SwitchToData: {
-			ui.label->setText("Data");
-			ui.stackedWidget->setCurrentIndex(0);
-		}break;
-		}
-	}
+	void ChangePage(int index);
 
-	void WriteButton(QString buttonName)
-	{
-		std::cout << "im here\n";
-		std::cout << buttonName.toUtf8().constData() << std::endl;
-	}
+	void CommandAlgorithm(int commad);
 private:  //variables
 	Ui::Form ui;
 
 	std::vector<std::tuple<QString, bool>> buttons{ {"Algorithms",0},{"Data",0} };
 	QDrawingBoard* board;
-	QSignalMapper* mapper;
+	QSignalMapper* pageMapper;
+	QSignalMapper* algorithmMapper;
 private: //methods
 	AppButton WhichButton();
 };

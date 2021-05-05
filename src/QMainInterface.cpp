@@ -48,53 +48,58 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	ui.algo_type->addItem(notInitialized);
 	ui.algo_type->addItem(find_way);
 	ui.algo_type->addItem(triangulation);
-
-	mapper = new QSignalMapper(this);
-
-	connect(mapper, SIGNAL(mapped(QString)), this, SLOT(WriteButton(QString)));
-
-	mapper->setMapping(ui.clear_memory, QString("Clear Memory"));
-	mapper->setMapping(ui.perform_whole_algorithm, "Perform whole Algorithm");
-	mapper->setMapping(ui.next_step, "Next step");
-
-	connect(ui.clear_memory, SIGNAL(pressed()), mapper, SLOT(map()));
-	connect(ui.next_step, SIGNAL(clicked()), mapper, SLOT(map()));
-	connect(ui.perform_whole_algorithm, SIGNAL(clicked()), mapper, SLOT(map()));
-
-	connect(ui.algoInterface, &QPushButton::pressed,
-			this, &QMainInterface::changeTitle);
-	connect(ui.creativInterface, &QPushButton::pressed,
-		this, &QMainInterface::changeTitle);
 	
-	//initializing main image
+	//mapping signals
+	algorithmMapper = new QSignalMapper(this);
+
+	connect(algorithmMapper, SIGNAL(mapped(int)), this, SLOT(CommandAlgorithm(int)));
+	
+	algorithmMapper->setMapping(ui.clear_memory, 0);
+	algorithmMapper->setMapping(ui.perform_whole_algorithm, 1);
+	algorithmMapper->setMapping(ui.next_step, 2);
+
+	connect(ui.clear_memory, SIGNAL(pressed()), algorithmMapper, SLOT(map()));
+	connect(ui.next_step, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
+	connect(ui.perform_whole_algorithm, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
+
+	pageMapper = new QSignalMapper(this);
+
+	connect(pageMapper, SIGNAL(mapped(int)), this, SLOT(ChangePage(int)));
+
+	pageMapper->setMapping(ui.creativInterface, 2);
+	pageMapper->setMapping(ui.algoInterface, 1);
+
+	connect(ui.algoInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
+	connect(ui.creativInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
+
 
 }
 
-//very temporarly- when ui will be finished there will be no need to use such a circus solution, it's for test
-//and until all the ui will be created
-AppButton QMainInterface::WhichButton() {
-	auto buttons = ui.interfaceButtons->buttons();
-	const int noButtons = buttons.size();
-	int destination = -1;
-	for (int i = 0; i < noButtons; i++)
-	{
-		if (buttons.at(i)->isChecked() == true)
-		{
-			destination = i;
-			break;
-		}
-		buttons.at(i)->setChecked(false);
+void QMainInterface::ChangePage(int index)
+{
+	switch (index) {
+	case 2: {
+		ui.label->setText("Data");
+		ui.stackedWidget->setCurrentIndex(2);
+	}break;
+	case 1: {
+		ui.label->setText("Algorithms");
+		ui.stackedWidget->setCurrentIndex(1);
+	}break;
 	}
-	for (int i = 0; i < noButtons; i++)
-	{
-		buttons.at(i)->setChecked(false);
+}
+
+void QMainInterface::CommandAlgorithm(int command)
+{
+	switch (command) {
+	case 0: {
+		std::cout << "Clear memory\n";
+	}break;
+	case 1: {
+		std::cout << "Perform the whole algortihm\n";
+	}break;
+	case 2: {
+		std::cout << "Perform signle step\n";
+	}break;
 	}
-	if (destination == -1)
-		return AppButton::None;
-	if (buttons.at(destination)->text() == "Data")
-		return AppButton::SwitchToData;
-	else if (buttons.at(destination)->text() == "algorithms")
-		return AppButton::SwitchToAlgorithms;
-	else
-		return AppButton::None;
 }
