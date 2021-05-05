@@ -26,6 +26,12 @@ mkdir build
 cd build
 cmake -S .. -B $(pwd)
 ```
+Open project, open and add .pro file (it is src.proj within src), run this project (it'll fail, but create needed moc files), then recreate project
+```
+cmake -S .. -B $(pwd)
+```
+Delete duplicated moc_* files and project is ready to run
+Sometimes there may be need to:
 Go to C:\Windows\System32\cmd.exe, run
 
 ```
