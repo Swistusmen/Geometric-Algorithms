@@ -6,7 +6,6 @@ BoardImplementation::BoardImplementation(std::shared_ptr<AlgorithmsKeeper> str, 
 	auto size = input.size();
 	double number = std::sqrt(static_cast<double>(size));
 	int buffer = number;
-	std::cout << number-buffer << std::endl;
 	if (static_cast<double>(number - buffer) != 0.0||size<9)
 	{
 		std::cerr << "[E1] Wrong Board initialization- wrong size\n";

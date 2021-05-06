@@ -8,36 +8,24 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	ui.algoInterface->setCheckable(true);
 	ui.creativInterface->setCheckable(true);
 
-	auto colors = ReadPalleteOfColors();
-	std::vector<unsigned int> input4{
-		3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 3, 0, 0, 0, 4, 0, 1, 4,	0,0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-		0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-		0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+	auto collectionOfAlgorithms = std::make_shared<AlgorithmsKeeper>();
+	std::vector<unsigned int> input{
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 1, 1, 0, 0, 0, 2, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 1, 1, 1, 0, 0,
+		0, 0, 0, 0, 0, 1, 0, 0,
+		0, 1, 1, 1, 0, 1, 0, 0,
+		0, 0, 0, 0, 0, 1, 0, 0,
+		0, 0, 3, 0, 0, 0, 0, 0
 	};
+	algorithms = std::make_unique<BoardImplementation>( collectionOfAlgorithms,input );
+
+	algorithms->SetAlgorithm(AlgoType::FindingWay);//later will be set up within GUI
+
+	auto colors = ReadPalleteOfColors();
 	board = new QDrawingBoard(ui.page_2);
-	board->LoadNewData(input4);
+	board->LoadNewData(input);
 	board->SetUpCollorPallete(colors);
 	ui.board_place->addWidget(board,Qt::AlignCenter);
 
@@ -71,8 +59,6 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 
 	connect(ui.algoInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
 	connect(ui.creativInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
-
-
 }
 
 void QMainInterface::ChangePage(int index)
@@ -94,12 +80,16 @@ void QMainInterface::CommandAlgorithm(int command)
 	switch (command) {
 	case 0: {
 		std::cout << "Clear memory\n";
+		algorithms->ClearAlgorithm();
 	}break;
 	case 1: {
 		std::cout << "Perform the whole algortihm\n";
 	}break;
 	case 2: {
 		std::cout << "Perform signle step\n";
+		algorithms->PerformAlgorithm(); //need to be catch and displayed within GUI
+		board->LoadNewData(algorithms->GetCurrentState());
+		board->PresentAlgorithm();
 	}break;
 	}
 }

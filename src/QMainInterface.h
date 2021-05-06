@@ -9,6 +9,9 @@
 #include "QDrawingBoard.h"
 #include "Writer.h"
 #include <qsignalmapper.h>
+#include "Board.h"
+#include "Strategy.h"
+#include <utility>
 
 class QPushButton;
 class QMainInterface : public QWidget {
@@ -26,12 +29,12 @@ public slots:
 private:  //variables
 	Ui::Form ui;
 
-	std::vector<std::tuple<QString, bool>> buttons{ {"Algorithms",0},{"Data",0} };
+	std::unique_ptr<BoardImplementation> algorithms=nullptr;
 	QDrawingBoard* board;
 	QSignalMapper* pageMapper;
 	QSignalMapper* algorithmMapper;
 private: //methods
-	AppButton WhichButton();
+	
 };
 
 #endif
