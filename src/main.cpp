@@ -20,7 +20,7 @@
 1. Add 3rd layer- for data input (empty) //done
 2. Fix switching between pages- make it nice //done
 3. Integrate Application with GUI- to let it work separatelty 
-(it's probably about extending BoardImplementation)
+-add combo box binding
 4. Improve input data:
 	-let read data
 	-create input mode

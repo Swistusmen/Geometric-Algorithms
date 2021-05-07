@@ -12,6 +12,13 @@
 #include "Board.h"
 #include "Strategy.h"
 #include <utility>
+#include <qdatawidgetmapper.h>
+#include <qstandarditemmodel.h>
+#include <vector>
+#include <tuple>
+#include <map>
+
+#define TIME 3000
 
 class QPushButton;
 class QMainInterface : public QWidget {
@@ -24,7 +31,7 @@ signals:
 
 public slots:
 	void ChangePage(int index);
-
+	void ChangeAlgorithm(int index);
 	void CommandAlgorithm(int commad);
 private:  //variables
 	Ui::Form ui;
@@ -33,8 +40,13 @@ private:  //variables
 	QDrawingBoard* board;
 	QSignalMapper* pageMapper;
 	QSignalMapper* algorithmMapper;
+	QDataWidgetMapper* algoType;
+	QStandardItemModel* model;
+	std::vector<std::tuple< std::string, AlgoType>> algoSetup; //swithc to read from file
+	std::map<AlgoState,QString> algoStates;
+	int time = TIME;
 private: //methods
-	
+	inline void UpdateAlgorithmState(AlgoState state);
 };
 
 #endif

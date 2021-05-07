@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="welcom_picture">
@@ -70,9 +70,9 @@
     <widget class="QComboBox" name="algo_type">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>480</x>
        <y>40</y>
-       <width>81</width>
+       <width>111</width>
        <height>22</height>
       </rect>
      </property>
@@ -80,10 +80,10 @@
     <widget class="QLabel" name="const_algo_title">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>480</x>
        <y>20</y>
-       <width>61</width>
-       <height>16</height>
+       <width>111</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
@@ -93,9 +93,9 @@
     <widget class="QLabel" name="const_state_title">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>480</x>
        <y>70</y>
-       <width>71</width>
+       <width>111</width>
        <height>20</height>
       </rect>
      </property>
@@ -109,9 +109,9 @@
     <widget class="QLabel" name="current_algo_state">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>480</x>
        <y>90</y>
-       <width>71</width>
+       <width>111</width>
        <height>20</height>
       </rect>
      </property>
@@ -122,9 +122,9 @@
     <widget class="QLabel" name="const_data">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>480</x>
        <y>130</y>
-       <width>81</width>
+       <width>111</width>
        <height>20</height>
       </rect>
      </property>
@@ -135,9 +135,9 @@
     <widget class="QLabel" name="current_loaded_data">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>160</y>
-       <width>81</width>
+       <x>480</x>
+       <y>150</y>
+       <width>111</width>
        <height>20</height>
       </rect>
      </property>
@@ -148,9 +148,9 @@
     <widget class="QPushButton" name="next_step">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>484</x>
        <y>200</y>
-       <width>75</width>
+       <width>111</width>
        <height>23</height>
       </rect>
      </property>
@@ -161,9 +161,9 @@
     <widget class="QPushButton" name="perform_whole_algorithm">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>484</x>
        <y>230</y>
-       <width>75</width>
+       <width>111</width>
        <height>23</height>
       </rect>
      </property>
@@ -174,9 +174,9 @@
     <widget class="QPushButton" name="clear_memory">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>484</x>
        <y>260</y>
-       <width>75</width>
+       <width>111</width>
        <height>23</height>
       </rect>
      </property>
@@ -212,6 +212,29 @@
       </rect>
      </property>
      <layout class="QVBoxLayout" name="board_place"/>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>290</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Time:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="input_time">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>290</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="input_page">
