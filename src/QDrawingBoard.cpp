@@ -70,27 +70,25 @@ void QDrawingBoard::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton) {
 		lastPoint = event->pos();
+		Draw(event->pos());
 		scribbling = true;
 	}
 }
-/*
+
 void QDrawingBoard::mouseMoveEvent(QMouseEvent* event)
 {
 	if ((event->buttons() & Qt::LeftButton) && scribbling)
-		drawLineTo(event->pos());
+		Draw(event->pos());
 }
-*/
+
 
 void QDrawingBoard::mouseReleaseEvent(QMouseEvent* event)
 {
-	if (event->button() == Qt::LeftButton && scribbling) {
-		Draw(event->pos());
-		scribbling = false;
-	}
+	scribbling = false;
 }
 
 //Make it possible to change colors to 0,1,2,3
-//make it possible to hold and 
+ 
 
 void QDrawingBoard::Draw(const QPoint& point)
 {

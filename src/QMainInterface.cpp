@@ -57,7 +57,7 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	};
+	}; //4,5,10,20,25, inne 50, 100, 200, 400, 
 	algorithms = std::make_unique<BoardImplementation>( collectionOfAlgorithms,input );
 	//algorithms->SetAlgorithm(AlgoType::FindingWay);//later will be set up within GUI
 
@@ -100,15 +100,8 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 
 
 	inputBoard = new QDrawingBoard(ui.input_page);
-	std::vector<unsigned int> input_2{ 
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<unsigned int> input_2(64);
+	std::fill(std::begin(input_2), std::end(input_2), 0);
 	inputBoard->LoadNewData(input_2);
 	inputBoard->SetUpCollorPallete(colors);
 	ui.input_board_place->addWidget(inputBoard, Qt::AlignCenter);
