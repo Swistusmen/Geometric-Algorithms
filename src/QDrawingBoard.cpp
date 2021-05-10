@@ -65,3 +65,42 @@ void QDrawingBoard::SetUpCollorPallete(std::vector < std::array<int, 3>> colors)
 		colorPallete.insert({ i,QColor(color[0],color[1],color[2]) });
 	}
 }
+
+void QDrawingBoard::mousePressEvent(QMouseEvent* event)
+{
+	if (event->button() == Qt::LeftButton) {
+		lastPoint = event->pos();
+		scribbling = true;
+	}
+}
+/*
+void QDrawingBoard::mouseMoveEvent(QMouseEvent* event)
+{
+	if ((event->buttons() & Qt::LeftButton) && scribbling)
+		drawLineTo(event->pos());
+}
+*/
+
+void QDrawingBoard::mouseReleaseEvent(QMouseEvent* event)
+{
+	if (event->button() == Qt::LeftButton && scribbling) {
+		Draw(event->pos());
+		scribbling = false;
+	}
+}
+
+//Make it possible to change colors to 0,1,2,3
+//make it possible to hold and 
+
+void QDrawingBoard::Draw(const QPoint& point)
+{
+	const int noCells = currentPicture.size();
+	const int dim = static_cast<int>(sqrt(noCells));
+	const int cellWidth = this->width() / dim;
+	int x_pos = std::floor(point.x() / cellWidth);
+	int y_pos = std::floor(point.y() / cellWidth);
+
+	int index = y_pos * dim + x_pos;
+	currentPicture[index] = 1;
+	update();
+}

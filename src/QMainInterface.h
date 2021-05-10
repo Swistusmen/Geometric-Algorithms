@@ -38,6 +38,7 @@ private:  //variables
 
 	std::unique_ptr<BoardImplementation> algorithms=nullptr;
 	QDrawingBoard* board;
+	QDrawingBoard* inputBoard;
 	QSignalMapper* pageMapper;
 	QSignalMapper* algorithmMapper;
 	QDataWidgetMapper* algoType;

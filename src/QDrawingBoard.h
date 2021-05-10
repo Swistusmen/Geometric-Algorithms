@@ -11,14 +11,7 @@
 #include <map>
 #include "qcolor.h"
 #include <array>
-
-/*
-1. Add posibility to draw a vector of values
-	-different number= different color
-	-make it flexible- size of cells will depend on what is the resoultion of this widget
-2. Make it changeable- as a whole component- to created easy way to update this widget
-3. Place this widget on proper layout
-*/
+#include <qevent.h>
 
 class QDrawingBoard : public QFrame {
 	Q_OBJECT
@@ -28,22 +21,31 @@ public:
 
 	void LoadNewData(std::vector<unsigned int> data);
 	void SetUpCollorPallete(std::vector < std::array<int, 3>> colors);
+	void SetScribbling(bool toScrible) {scribbling = toScrible;}
+
+protected:
+	void mousePressEvent(QMouseEvent* event) override;
+	//void mouseMoveEvent(QMouseEvent* event) override;
+	void mouseReleaseEvent(QMouseEvent* event) override;
+	
 signals:
 
 public slots:
 	void PresentAlgorithm();
 
 private:  //variables
+	QPoint lastPoint;
 	QPainter* paint;
 	QPen* pen;
 	QPushButton* button;
 	bool isSquareDisplayd = false;
 	std::vector<unsigned int> currentPicture;
-	std::map<int, QColor> colorPallete; //make it read from file
+	std::map<int, QColor> colorPallete; //should be read from file
+	bool isInputBoard = false;
+	bool scribbling = false;
 private: //methods
 	virtual void QDrawingBoard::paintEvent(QPaintEvent* event);
-
-
+	void Draw(const QPoint& point);
 };
 
 #endif

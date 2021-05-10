@@ -20,7 +20,7 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	algoStates.insert({ AlgoState::FINISHED_FAILURE, "Failure" });
 	algoStates.insert({ AlgoState::PERFORMING, "Performing" });
 	auto collectionOfAlgorithms = std::make_shared<AlgorithmsKeeper>();
-	std::vector<unsigned int> input{
+	/*std::vector<unsigned int> input{
 		0, 0, 0, 0, 0, 0, 0, 0,
 		0, 1, 1, 0, 0, 0, 2, 0,
 		0, 0, 0, 0, 0, 0, 0, 0,
@@ -29,6 +29,34 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 		0, 1, 1, 1, 0, 1, 0, 0,
 		0, 0, 0, 0, 0, 1, 0, 0,
 		0, 0, 3, 0, 0, 0, 0, 0
+	};*/
+
+	std::vector<unsigned int> input{
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	};
 	algorithms = std::make_unique<BoardImplementation>( collectionOfAlgorithms,input );
 	//algorithms->SetAlgorithm(AlgoType::FindingWay);//later will be set up within GUI
@@ -69,6 +97,21 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	connect(ui.creativInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
 
 	connect(ui.algo_type, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeAlgorithm(int)));
+
+
+	inputBoard = new QDrawingBoard(ui.input_page);
+	std::vector<unsigned int> input_2{ 
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0 };
+	inputBoard->LoadNewData(input_2);
+	inputBoard->SetUpCollorPallete(colors);
+	ui.input_board_place->addWidget(inputBoard, Qt::AlignCenter);
 }
 
 void QMainInterface::ChangePage(int index)
@@ -99,6 +142,7 @@ void QMainInterface::CommandAlgorithm(int command)
 		time = TIME;
 		try {
 			time = ui.input_time->text().toInt();
+			time *= 1000;
 		}
 		catch (std::exception e) {
 			time = TIME;
@@ -146,10 +190,20 @@ void QMainInterface::UpdateAlgorithmState(AlgoState state)
 //	-dodac feature z ustawianiem time framu //jest
 //Perform:
 //	-dodac ustawianie stanu //jest
-//Collor pallete- dodac wiecej kolorkow
+//Collor pallete- dodac wiecej kolorkow //jest
 //Testy 
 
+/*TODO
+-poprawic flow clear (ma przywracac algorytm do poczatkowego stanu- zmienic z clear na restart algorithm
+-dane maja miec typ ktory to jest wczytywany i czytany (czy agorytm moze operowac na takich danych)
+-poprawic konsturktor(dodac wyjatki)
+*/
+
+
 // Input:
-//	-dodac okno z odczytem
+//	-okno pokazujace zapisane algorytmy
 //  -stworzyc interaktywna tablice do pisania czarny kolorem
 //	-dodac mozliwosc zapisu
+//	-mozliwosc wyboru koloru
+//	-mozliwosc ustawiania typu danych
+//

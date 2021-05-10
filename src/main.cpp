@@ -20,16 +20,21 @@
 1. Add 3rd layer- for data input (empty) //done
 2. Fix switching between pages- make it nice //done
 3. Integrate Application with GUI- to let it work separatelty 
--add combo box binding
+-add combo box binding //done
 4. Improve input data:
 	-let read data
 	-create input mode
 5. Add nice features:
 	-description of every algorithm
 6. Improve building tool
+	-make it easy to build on windows
+	-make it possible to build on linux
 7. Create CI/CD 
+	-building
+	-testing
+	-deploying
 8. Tests
-9. Next algorithms
+9. Next algorithms in the future ...
 */
 
 int main(int argc, char* argv[])

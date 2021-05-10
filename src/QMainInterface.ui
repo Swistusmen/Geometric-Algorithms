@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="welcom_picture">
@@ -58,8 +58,8 @@
     <widget class="QCalendarWidget" name="calendarWidget">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>70</y>
+       <x>300</x>
+       <y>10</y>
        <width>304</width>
        <height>190</height>
       </rect>
@@ -181,7 +181,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Clear</string>
+      <string>Restart Algorithm</string>
      </property>
     </widget>
     <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -205,7 +205,7 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>20</x>
        <y>0</y>
        <width>451</width>
        <height>401</height>
@@ -238,17 +238,77 @@
     </widget>
    </widget>
    <widget class="QWidget" name="input_page">
-    <widget class="QLabel" name="label_2">
+    <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>160</y>
-       <width>81</width>
-       <height>21</height>
+       <x>480</x>
+       <y>30</y>
+       <width>111</width>
+       <height>23</height>
       </rect>
      </property>
      <property name="text">
-      <string>Input data</string>
+      <string>Load file</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>360</y>
+       <width>111</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Use </string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>330</y>
+       <width>111</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>421</width>
+       <height>381</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="input_board_place"/>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>80</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>60</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>NO. cells:</string>
      </property>
     </widget>
    </widget>
