@@ -17,10 +17,11 @@ class QDrawingBoard : public QFrame {
 	Q_OBJECT
 
 public:
-	explicit QDrawingBoard(QWidget* parent = 0);
+	explicit QDrawingBoard(QWidget* parent = 0, bool drawing=false);
 
 	void LoadNewData(std::vector<unsigned int> data);
 	void SetUpCollorPallete(std::vector < std::array<int, 3>> colors);
+	std::vector<unsigned int> GetCurrentPicture() { return currentPicture; }
 	void SetScribbling(bool toScrible) {scribbling = toScrible;}
 
 protected:
@@ -43,9 +44,12 @@ private:  //variables
 	std::map<int, QColor> colorPallete; //should be read from file
 	bool isInputBoard = false;
 	bool scribbling = false;
+	bool isDrawingPossible = false;
+
 private: //methods
 	virtual void QDrawingBoard::paintEvent(QPaintEvent* event);
 	void Draw(const QPoint& point);
+
 };
 
 #endif

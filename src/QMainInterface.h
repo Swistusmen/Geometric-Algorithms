@@ -17,6 +17,7 @@
 #include <vector>
 #include <tuple>
 #include <map>
+#include <qcolordialog.h>
 
 #define TIME 3000
 
@@ -33,6 +34,7 @@ public slots:
 	void ChangePage(int index);
 	void ChangeAlgorithm(int index);
 	void CommandAlgorithm(int commad);
+	void ClearBoard();
 private:  //variables
 	Ui::Form ui;
 
@@ -45,9 +47,13 @@ private:  //variables
 	QStandardItemModel* model;
 	std::vector<std::tuple< std::string, AlgoType>> algoSetup; //swithc to read from file
 	std::map<AlgoState,QString> algoStates;
+	
 	int time = TIME;
 private: //methods
 	inline void UpdateAlgorithmState(AlgoState state);
+	//void ChangeBoardSize();// to implement today
+	//make 1 board which for both interfaces -DONE
+	//repair reset button
 };
 
 #endif

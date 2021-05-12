@@ -98,13 +98,14 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 
 	connect(ui.algo_type, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeAlgorithm(int)));
 
-
-	inputBoard = new QDrawingBoard(ui.input_page);
-	std::vector<unsigned int> input_2(64);
-	std::fill(std::begin(input_2), std::end(input_2), 0);
-	inputBoard->LoadNewData(input_2);
+	inputBoard = new QDrawingBoard(ui.input_page,true);
+	inputBoard->LoadNewData(input);
 	inputBoard->SetUpCollorPallete(colors);
 	ui.input_board_place->addWidget(inputBoard, Qt::AlignCenter);
+
+	board->SetScribbling(false);
+
+	//to connect clear_board with Clear..()
 }
 
 void QMainInterface::ChangePage(int index)
@@ -113,10 +114,12 @@ void QMainInterface::ChangePage(int index)
 	switch (index) {
 	case 2: {
 		ui.label->setText("Data");
+		inputBoard->LoadNewData(board->GetCurrentPicture());
 		ui.stackedWidget->setCurrentIndex(2);
 	}break;
 	case 1: {
 		ui.label->setText("Algorithms");
+		board->LoadNewData(inputBoard->GetCurrentPicture());
 		ui.stackedWidget->setCurrentIndex(1);
 	}break;
 	}
@@ -172,19 +175,17 @@ void QMainInterface::UpdateAlgorithmState(AlgoState state)
 	ui.current_algo_state->setText(algoStates.at(state));
 }
 
-//DZISIAJ
-//ChangeAlgorithm- zmienic:
-//	-dodac ustawianie labela //jest
-//	-dodac zmiane algorytmu //jest
-//Clear:
-//	-dodac ustawianie zerowanie //jest
-//Perform Whole:
-//	-zaimplementowac //jest
-//	-dodac feature z ustawianiem time framu //jest
-//Perform:
-//	-dodac ustawianie stanu //jest
-//Collor pallete- dodac wiecej kolorkow //jest
-//Testy 
+
+void QMainInterface::ClearBoard() {
+	auto data = inputBoard->GetCurrentPicture();
+	std::fill(std::begin(data), std::end(data), 0);
+	inputBoard->LoadNewData(data);
+	inputBoard->PresentAlgorithm();
+	UpdateAlgorithmState(AlgoState::NONE);
+}
+
+
+
 
 /*TODO
 -poprawic flow clear (ma przywracac algorytm do poczatkowego stanu- zmienic z clear na restart algorithm
@@ -193,10 +194,13 @@ void QMainInterface::UpdateAlgorithmState(AlgoState state)
 */
 
 
-// Input:
-//	-okno pokazujace zapisane algorytmy
-//  -stworzyc interaktywna tablice do pisania czarny kolorem
-//	-dodac mozliwosc zapisu
-//	-mozliwosc wyboru koloru
-//	-mozliwosc ustawiania typu danych
-//
+/*TODO
+-zmiana koloru
+-poprawa clear
+-zmiana layoutu- jeden board
+-dodanie opcji reset
+-dodanie opcji save
+-dodanie odczytu formatu danych
+*/
+
+

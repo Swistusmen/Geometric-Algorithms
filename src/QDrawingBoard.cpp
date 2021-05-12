@@ -1,8 +1,9 @@
 #include "QDrawingBoard.h"
 #include <iostream>
 
-QDrawingBoard::QDrawingBoard(QWidget* parent) :QFrame(parent) {
+QDrawingBoard::QDrawingBoard(QWidget* parent,bool drawing) :QFrame(parent) {
 	this->setFixedSize(400, 400);
+	isDrawingPossible = drawing;
 }
 
 void QDrawingBoard::PresentAlgorithm()
@@ -48,7 +49,6 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 			}
 		}
 	}
-	
 }
 
 void QDrawingBoard::LoadNewData(std::vector<unsigned int> data)
@@ -68,6 +68,8 @@ void QDrawingBoard::SetUpCollorPallete(std::vector < std::array<int, 3>> colors)
 
 void QDrawingBoard::mousePressEvent(QMouseEvent* event)
 {
+	if (!isDrawingPossible)
+		return;
 	if (event->button() == Qt::LeftButton) {
 		lastPoint = event->pos();
 		Draw(event->pos());
@@ -99,6 +101,9 @@ void QDrawingBoard::Draw(const QPoint& point)
 	int y_pos = std::floor(point.y() / cellWidth);
 
 	int index = y_pos * dim + x_pos;
+	std::cout << index << std::endl;
+	if ((index >= noCells) ||(index<0))
+		return;
 	currentPicture[index] = 1;
 	update();
 }
