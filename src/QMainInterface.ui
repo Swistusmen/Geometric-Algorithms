@@ -119,7 +119,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Loaded data:</string>
+      <string>Data type:</string>
      </property>
     </widget>
     <widget class="QLabel" name="current_loaded_data">
@@ -228,19 +228,6 @@
     </widget>
    </widget>
    <widget class="QWidget" name="input_page">
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>30</y>
-       <width>111</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Load file</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="load_file">
      <property name="geometry">
       <rect>
@@ -282,7 +269,7 @@
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>80</y>
+       <y>40</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -292,7 +279,7 @@
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>60</y>
+       <y>20</y>
        <width>101</width>
        <height>16</height>
       </rect>
@@ -318,7 +305,7 @@
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>140</y>
+       <y>90</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -328,7 +315,7 @@
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>120</y>
+       <y>70</y>
        <width>101</width>
        <height>16</height>
       </rect>
@@ -337,41 +324,48 @@
       <string>Algorithm</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>240</y>
-       <width>121</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Data Name:</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
        <x>480</x>
-       <y>170</y>
+       <y>120</y>
        <width>111</width>
-       <height>51</height>
+       <height>81</height>
       </rect>
      </property>
      <property name="text">
       <string>Algorithm description</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="file_name">
+    <widget class="QComboBox" name="choose_color">
      <property name="geometry">
       <rect>
-       <x>493</x>
-       <y>260</y>
+       <x>490</x>
+       <y>270</y>
        <width>111</width>
-       <height>21</height>
+       <height>22</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>black</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>white</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>red</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>green</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>

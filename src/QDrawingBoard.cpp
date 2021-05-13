@@ -104,6 +104,6 @@ void QDrawingBoard::Draw(const QPoint& point)
 	std::cout << index << std::endl;
 	if ((index >= noCells) ||(index<0))
 		return;
-	currentPicture[index] = 1;
+	currentPicture[index] = color;
 	update();
 }

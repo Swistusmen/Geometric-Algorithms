@@ -23,6 +23,7 @@ public:
 	void SetUpCollorPallete(std::vector < std::array<int, 3>> colors);
 	std::vector<unsigned int> GetCurrentPicture() { return currentPicture; }
 	void SetScribbling(bool toScrible) {scribbling = toScrible;}
+	void SetColor(int c) { color = c; }
 
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
@@ -45,7 +46,7 @@ private:  //variables
 	bool isInputBoard = false;
 	bool scribbling = false;
 	bool isDrawingPossible = false;
-
+	int color = 1;
 private: //methods
 	virtual void QDrawingBoard::paintEvent(QPaintEvent* event);
 	void Draw(const QPoint& point);

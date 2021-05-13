@@ -38,6 +38,8 @@ public slots:
 	void ClearBoard();
 	void ChangeBoardSize(int dim);
 	void OpenFileDialogToLoadData();
+	void OpenFileDialogToSaveData();
+	void ChangeColor(int index);
 private:  //variables
 	Ui::Form ui;
 
@@ -48,9 +50,8 @@ private:  //variables
 	QSignalMapper* algorithmMapper;
 	QSignalMapper* algorithmMapper2;
 	QSignalMapper* boardSizeMapper;
+	
 	QDataWidgetMapper* algoType;
-	QStandardItemModel* model;
-	QFileDialog* fileDialog;
 	std::vector<std::tuple< std::string, AlgoType>> algoSetup; //swithc to read from file
 	std::map<AlgoState,QString> algoStates;
 	int time = TIME;

@@ -34,13 +34,18 @@ std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string fil
 	return { DecodeFileToMatrix(codedMatrix),DecodeAlgorithm(algoType) };
 }
 
-std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data, AlgoType type)
+std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data, AlgoType type, bool isPath)
 {
 	std::ofstream file;
-	auto path = fs::current_path().parent_path().parent_path();
-	path += "\\saves\\";
-	path += filename;
-	file.open(path);
+	if (isPath = false) {
+		auto path = fs::current_path().parent_path().parent_path();
+		path += "\\saves\\";
+		path += filename;
+		file.open(path);
+	}
+	else {
+		file.open(filename);
+	}
 	file << EncodeAlgorithm(type);
 	file << CodeMatrix(data);
 	file.close();

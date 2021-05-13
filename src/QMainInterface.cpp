@@ -120,6 +120,8 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	connect(ui.clear_board, SIGNAL(clicked()), this, SLOT(ClearBoard()));
 
 	connect(ui.load_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToLoadData()));
+	connect(ui.save_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToSaveData()));
+	connect(ui.choose_color, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeColor(int)));
 }
 
 void QMainInterface::ChangePage(int index)
@@ -221,20 +223,41 @@ void QMainInterface::OpenFileDialogToLoadData()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
 		tr("Open Image"), "/", tr("Image Files (*.txt */.cpp)"));
-	std::cout << fileName.toStdString() << std::endl;
+	if (fileName.toStdString() == "")
+		return;
 	auto readAlgo = ReadInputFromFile(fileName.toStdString(), true);
 	ClearBoard();
 	inputBoard->LoadNewData(readAlgo.first);
 	inputBoard->PresentAlgorithm();
 	algorithms->LoadNewData(readAlgo.first);
-	std::cout << readAlgo.first.size() << std::endl;
+}
+
+void QMainInterface::OpenFileDialogToSaveData()
+{
+	QString fileName = QFileDialog::getSaveFileName(this,
+		tr("Open Image"), "/", tr("Image Files (*.txt */.cpp)"));
+	if (fileName.toStdString() == "")
+		return;
+	std::cout << "File to save: " <<fileName.toStdString()<< std::endl;
+	//WARNING -CHANGE LAST PARAMETER FO FUNCTION BELOW AFTER IMPLEENTATION
+	SaveOutputToFile(fileName.toStdString(), inputBoard->GetCurrentPicture(), AlgoType::FindingVerticies, true);
+}
+
+void QMainInterface::ChangeColor(int index) 
+{
+	switch (index) {
+	case 0: {inputBoard->SetColor(1); }break;
+	case 1: {inputBoard->SetColor(0); }break;
+	case 2: {inputBoard->SetColor(2); }break;
+	case 3: {inputBoard->SetColor(3); }break;
+	}
 }
 
 /*TODO
-- dodanie opcji zmiany koloru
-- dodanie opcji odczytu danych z pliku -jest+ dodac opcje wyjscia 
-- dodanie opcji zapisu danych do pliku
-- poprawa layoutow
+- dodanie opcji zmiany koloru -uproszczenie tylko pierwsze podstawowe //JEST
+- dodanie opcji odczytu danych z pliku JEST
+- dodanie opcji zapisu danych do pliku JEST
+- poprawa layoutow //JEST
 - poprawa algorytmow
 - dodanie algorithm description
 - poprawa czytelnosci kodu
