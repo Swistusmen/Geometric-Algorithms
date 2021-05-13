@@ -137,7 +137,9 @@ void QMainInterface::ChangePage(int index)
 	}break;
 	case 1: {
 		ui.label->setText("Algorithms");
-		board->LoadNewData(inputBoard->GetCurrentPicture());
+		auto data = inputBoard->GetCurrentPicture();
+		board->LoadNewData(data);
+		algorithms->LoadNewData(data);
 		ui.stackedWidget->setCurrentIndex(1);
 	}break;
 	}
