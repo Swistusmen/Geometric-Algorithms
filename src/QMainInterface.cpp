@@ -8,120 +8,27 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	ui.algoInterface->setCheckable(true);
 	ui.creativInterface->setCheckable(true);
 
-	algoSetup.push_back({ "Not initialized", AlgoType::None });
-	algoSetup.push_back({ "Finding Way", AlgoType::FindingWay });
-	algoSetup.push_back({ "Triangulation", AlgoType::DelaunayTriangulation });
-	algoSetup.push_back({ "Bounding Box" ,AlgoType::BoundingBox});
-	algoSetup.push_back({ "Voronoi Diagram" ,AlgoType::VoronoiDiagram});
-	algoSetup.push_back({ "Finding Verticies" ,AlgoType::FindingWay});
-
-	algoStates.insert({ AlgoState::NONE, "None" });
-	algoStates.insert({ AlgoState::FINISHED_SUCCESS,"Success" });
-	algoStates.insert({ AlgoState::FINISHED_FAILURE, "Failure" });
-	algoStates.insert({ AlgoState::PERFORMING, "Performing" });
 	auto collectionOfAlgorithms = std::make_shared<AlgorithmsKeeper>();
-	/*std::vector<unsigned int> input{
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 1, 1, 0, 0, 0, 2, 0,
-		0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 1, 1, 1, 0, 0,
-		0, 0, 0, 0, 0, 1, 0, 0,
-		0, 1, 1, 1, 0, 1, 0, 0,
-		0, 0, 0, 0, 0, 1, 0, 0,
-		0, 0, 3, 0, 0, 0, 0, 0
-	};*/
 
-	std::vector<unsigned int> input{
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	}; //4,5,10,20,25, inne 50, 100, 200, 400, 
-	algorithms = std::make_unique<BoardImplementation>( collectionOfAlgorithms,input );
-	//algorithms->SetAlgorithm(AlgoType::FindingWay);//later will be set up within GUI
+	std::vector<unsigned int> input(625);
+	std::fill(input.begin(), input.end(), 0);
+	algorithms = std::make_unique<BoardImplementation>(collectionOfAlgorithms, input);
 
 	auto colors = ReadPalleteOfColors();
 	board = new QDrawingBoard(ui.page_2);
 	board->LoadNewData(input);
 	board->SetUpCollorPallete(colors);
-	ui.board_place->addWidget(board,Qt::AlignCenter);
+	board->SetScribbling(false);
+	ui.board_place->addWidget(board, Qt::AlignCenter);
 
-	//just testing how things will work
-	for (int i = 0; i < algoSetup.size(); i++)
-	{
-		ui.algo_type->addItem(QString::fromStdString(std::get<0>(algoSetup[i])));
-	}
-	
-	//mapping signals
-	algorithmMapper = new QSignalMapper(this);
-
-	connect(algorithmMapper, SIGNAL(mapped(int)), this, SLOT(CommandAlgorithm(int)));
-	
-	algorithmMapper->setMapping(ui.clear_memory, 0);
-	algorithmMapper->setMapping(ui.perform_whole_algorithm, 1);
-	algorithmMapper->setMapping(ui.next_step, 2);
-
-	connect(ui.clear_memory, SIGNAL(pressed()), algorithmMapper, SLOT(map()));
-	connect(ui.next_step, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
-	connect(ui.perform_whole_algorithm, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
-
-	pageMapper = new QSignalMapper(this);
-
-	connect(pageMapper, SIGNAL(mapped(int)), this, SLOT(ChangePage(int)));
-
-	pageMapper->setMapping(ui.creativInterface, 2);
-	pageMapper->setMapping(ui.algoInterface, 1);
-
-	connect(ui.algoInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
-	connect(ui.creativInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
-
-	connect(ui.algo_type, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeAlgorithm(int)));
-
-	inputBoard = new QDrawingBoard(ui.input_page,true);
+	inputBoard = new QDrawingBoard(ui.input_page, true);
 	inputBoard->LoadNewData(input);
 	inputBoard->SetUpCollorPallete(colors);
 	ui.input_board_place->addWidget(inputBoard, Qt::AlignCenter);
 
-	board->SetScribbling(false);
+	InitializeWidgets();
 
-	boardSizeMapper = new QSignalMapper(this);
-
-	ui.change_board_size->addItem("4");
-	ui.change_board_size->addItem("10");
-	ui.change_board_size->addItem("20");
-	ui.change_board_size->addItem("25");
-	ui.change_board_size->addItem("50");
-	ui.change_board_size->addItem("100");
-
-	connect(ui.change_board_size, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeBoardSize(int)));
-
-
-	connect(ui.clear_board, SIGNAL(clicked()), this, SLOT(ClearBoard()));
-
-	connect(ui.load_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToLoadData()));
-	connect(ui.save_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToSaveData()));
-	connect(ui.choose_color, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeColor(int)));
+	ConnectWidgets();
 }
 
 void QMainInterface::ChangePage(int index)
@@ -164,7 +71,7 @@ void QMainInterface::CommandAlgorithm(int command)
 			time = TIME;
 		}
 		auto state = algorithms->PerformAlgorithm();
-		do{
+		do {
 			UpdateAlgorithmState(state);
 			board->LoadNewData(algorithms->GetCurrentState());
 			board->PresentAlgorithm();
@@ -173,10 +80,10 @@ void QMainInterface::CommandAlgorithm(int command)
 		} while (state == AlgoState::PERFORMING); UpdateAlgorithmState(state);
 		board->LoadNewData(algorithms->GetCurrentState());
 		board->PresentAlgorithm();
-		
+
 	}break;
 	case 2: {
-		UpdateAlgorithmState(algorithms->PerformAlgorithm()); 
+		UpdateAlgorithmState(algorithms->PerformAlgorithm());
 		board->LoadNewData(algorithms->GetCurrentState());
 		board->PresentAlgorithm();
 	}break;
@@ -185,7 +92,7 @@ void QMainInterface::CommandAlgorithm(int command)
 
 void QMainInterface::ChangeAlgorithm(int index)
 {
-	ui.current_algo_state->setText(QString::fromStdString(std::get<0>(algoSetup[index])));
+	ui.current_algo_state->setText(std::get<0>(algoSetup[index]));
 	algorithms->SetAlgorithm(std::get<1>(algoSetup[index]));
 }
 
@@ -208,14 +115,14 @@ void QMainInterface::ChangeBoardSize(int index)
 {
 	int dim;
 	switch (index) {
-	case 0:{dim = 4;}break;
+	case 0: {dim = 4; }break;
 	case 1: {dim = 10; }break;
 	case 2: {dim = 20; }break;
 	case 3: {dim = 25; }break;
 	case 4: {dim = 50; }break;
 	case 5: {dim = 100; }break;
 	}
-	std::vector<unsigned int> data (dim*dim);
+	std::vector<unsigned int> data(dim * dim);
 	std::fill(std::begin(data), std::end(data), 0);
 	inputBoard->LoadNewData(data);
 	algorithms->ClearAlgorithm();
@@ -240,12 +147,12 @@ void QMainInterface::OpenFileDialogToSaveData()
 		tr("Open Image"), "/", tr("Image Files (*.txt */.cpp)"));
 	if (fileName.toStdString() == "")
 		return;
-	std::cout << "File to save: " <<fileName.toStdString()<< std::endl;
+	std::cout << "File to save: " << fileName.toStdString() << std::endl;
 	//WARNING -CHANGE LAST PARAMETER FO FUNCTION BELOW AFTER IMPLEENTATION
 	SaveOutputToFile(fileName.toStdString(), inputBoard->GetCurrentPicture(), AlgoType::FindingVerticies, true);
 }
 
-void QMainInterface::ChangeColor(int index) 
+void QMainInterface::ChangeColor(int index)
 {
 	switch (index) {
 	case 0: {inputBoard->SetColor(1); }break;
@@ -255,6 +162,62 @@ void QMainInterface::ChangeColor(int index)
 	}
 }
 
+void QMainInterface::ConnectWidgets()
+{
+	connect(algorithmMapper, SIGNAL(mapped(int)), this, SLOT(CommandAlgorithm(int)));
+	connect(ui.change_board_size, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeBoardSize(int)));
+	connect(ui.clear_board, SIGNAL(clicked()), this, SLOT(ClearBoard()));
+	connect(ui.load_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToLoadData()));
+	connect(ui.save_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToSaveData()));
+	connect(ui.choose_color, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeColor(int)));
+	connect(ui.algoInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
+	connect(ui.creativInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
+	connect(ui.algo_type, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeAlgorithm(int)));
+	connect(pageMapper, SIGNAL(mapped(int)), this, SLOT(ChangePage(int)));
+	connect(ui.clear_memory, SIGNAL(pressed()), algorithmMapper, SLOT(map()));
+	connect(ui.next_step, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
+	connect(ui.perform_whole_algorithm, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
+}
+
+void QMainInterface::InitializeWidgets()
+{
+	algoSetup.push_back({ "Not initialized", AlgoType::None });
+	algoSetup.push_back({ "Finding Way", AlgoType::FindingWay });
+	algoSetup.push_back({ "Triangulation", AlgoType::DelaunayTriangulation });
+	algoSetup.push_back({ "Bounding Box" ,AlgoType::BoundingBox });
+	algoSetup.push_back({ "Voronoi Diagram" ,AlgoType::VoronoiDiagram });
+	algoSetup.push_back({ "Finding Verticies" ,AlgoType::FindingWay });
+
+	algoStates.insert({ AlgoState::NONE, "None" });
+	algoStates.insert({ AlgoState::FINISHED_SUCCESS,"Success" });
+	algoStates.insert({ AlgoState::FINISHED_FAILURE, "Failure" });
+	algoStates.insert({ AlgoState::PERFORMING, "Performing" });
+
+	for (int i = 0; i < algoSetup.size(); i++)
+	{
+		ui.algo_type->addItem(std::get<0>(algoSetup[i]));
+	}
+
+	algorithmMapper = new QSignalMapper(this);
+
+	algorithmMapper->setMapping(ui.clear_memory, 0);
+	algorithmMapper->setMapping(ui.perform_whole_algorithm, 1);
+	algorithmMapper->setMapping(ui.next_step, 2);
+
+	pageMapper = new QSignalMapper(this);
+	pageMapper->setMapping(ui.creativInterface, 2);
+	pageMapper->setMapping(ui.algoInterface, 1);
+
+	boardSizeMapper = new QSignalMapper(this);
+}
+
+// control of algorithm type
+//improve colors- generation
+// repair algorithms
+// directory hierarchy to improve
+
+
+
 /*TODO
 - dodanie opcji zmiany koloru -uproszczenie tylko pierwsze podstawowe //JEST
 - dodanie opcji odczytu danych z pliku JEST
@@ -262,8 +225,6 @@ void QMainInterface::ChangeColor(int index)
 - poprawa layoutow //JEST
 - poprawa algorytmow
 - dodanie algorithm description
-- poprawa czytelnosci kodu
-- poprawa konstruktora
 - poprawa cmake (budowa na widnowsie)
 */
 

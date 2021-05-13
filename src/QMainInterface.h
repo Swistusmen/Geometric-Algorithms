@@ -52,11 +52,14 @@ private:  //variables
 	QSignalMapper* boardSizeMapper;
 	
 	QDataWidgetMapper* algoType;
-	std::vector<std::tuple< std::string, AlgoType>> algoSetup; //swithc to read from file
+	std::vector<std::tuple< QString, AlgoType>> algoSetup; //swithc to read from file
 	std::map<AlgoState,QString> algoStates;
 	int time = TIME;
 private: //methods
 	inline void UpdateAlgorithmState(AlgoState state);
+
+	void ConnectWidgets();
+	void InitializeWidgets();
 };
 
 #endif
