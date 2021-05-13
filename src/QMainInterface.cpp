@@ -105,7 +105,21 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 
 	board->SetScribbling(false);
 
-	//to connect clear_board with Clear..()
+	boardSizeMapper = new QSignalMapper(this);
+
+	ui.change_board_size->addItem("4");
+	ui.change_board_size->addItem("10");
+	ui.change_board_size->addItem("20");
+	ui.change_board_size->addItem("25");
+	ui.change_board_size->addItem("50");
+	ui.change_board_size->addItem("100");
+
+	connect(ui.change_board_size, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeBoardSize(int)));
+
+
+	connect(ui.clear_board, SIGNAL(clicked()), this, SLOT(ClearBoard()));
+
+	connect(ui.load_file, SIGNAL(clicked()), this, SLOT(OpenFileDialogToLoadData()));
 }
 
 void QMainInterface::ChangePage(int index)
@@ -114,7 +128,9 @@ void QMainInterface::ChangePage(int index)
 	switch (index) {
 	case 2: {
 		ui.label->setText("Data");
-		inputBoard->LoadNewData(board->GetCurrentPicture());
+		auto data = board->GetCurrentPicture();
+		inputBoard->LoadNewData(data);
+		algorithms->LoadNewData(data);
 		ui.stackedWidget->setCurrentIndex(2);
 	}break;
 	case 1: {
@@ -156,7 +172,6 @@ void QMainInterface::CommandAlgorithm(int command)
 		
 	}break;
 	case 2: {
-		
 		UpdateAlgorithmState(algorithms->PerformAlgorithm()); 
 		board->LoadNewData(algorithms->GetCurrentState());
 		board->PresentAlgorithm();
@@ -181,26 +196,49 @@ void QMainInterface::ClearBoard() {
 	std::fill(std::begin(data), std::end(data), 0);
 	inputBoard->LoadNewData(data);
 	inputBoard->PresentAlgorithm();
+	algorithms->ClearAlgorithm();
 	UpdateAlgorithmState(AlgoState::NONE);
 }
 
+void QMainInterface::ChangeBoardSize(int index)
+{
+	int dim;
+	switch (index) {
+	case 0:{dim = 4;}break;
+	case 1: {dim = 10; }break;
+	case 2: {dim = 20; }break;
+	case 3: {dim = 25; }break;
+	case 4: {dim = 50; }break;
+	case 5: {dim = 100; }break;
+	}
+	std::vector<unsigned int> data (dim*dim);
+	std::fill(std::begin(data), std::end(data), 0);
+	inputBoard->LoadNewData(data);
+	algorithms->ClearAlgorithm();
+}
 
-
+void QMainInterface::OpenFileDialogToLoadData()
+{
+	QString fileName = QFileDialog::getOpenFileName(this,
+		tr("Open Image"), "/", tr("Image Files (*.txt */.cpp)"));
+	std::cout << fileName.toStdString() << std::endl;
+	auto readAlgo = ReadInputFromFile(fileName.toStdString(), true);
+	ClearBoard();
+	inputBoard->LoadNewData(readAlgo.first);
+	inputBoard->PresentAlgorithm();
+	algorithms->LoadNewData(readAlgo.first);
+	std::cout << readAlgo.first.size() << std::endl;
+}
 
 /*TODO
--poprawic flow clear (ma przywracac algorytm do poczatkowego stanu- zmienic z clear na restart algorithm
--dane maja miec typ ktory to jest wczytywany i czytany (czy agorytm moze operowac na takich danych)
--poprawic konsturktor(dodac wyjatki)
+- dodanie opcji zmiany koloru
+- dodanie opcji odczytu danych z pliku -jest+ dodac opcje wyjscia 
+- dodanie opcji zapisu danych do pliku
+- poprawa layoutow
+- poprawa algorytmow
+- dodanie algorithm description
+- poprawa czytelnosci kodu
+- poprawa konstruktora
+- poprawa cmake (budowa na widnowsie)
 */
-
-
-/*TODO
--zmiana koloru
--poprawa clear
--zmiana layoutu- jeden board
--dodanie opcji reset
--dodanie opcji save
--dodanie odczytu formatu danych
-*/
-
 

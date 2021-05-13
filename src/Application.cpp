@@ -101,7 +101,7 @@ void Application::LoadData()
 		std::cin >> saveToLoad;
 		saveToLoad--;
 	}
-	auto readFile= ReadInputFromFile(saves[saveToLoad]);
+	auto readFile= ReadInputFromFile(saves[saveToLoad],false);
 	data = readFile.first;
 	this->dataType = readFile.second;
 	myBoard.LoadNewData(data);

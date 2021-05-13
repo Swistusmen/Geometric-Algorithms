@@ -11,7 +11,7 @@
 
 std::string ParseToMatrix(std::vector<unsigned int> input);
 
-std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string filename);
+std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string filename,bool isPath);
 
 std::string SaveOutputToFile(std::string filename, std::vector<unsigned int> data, AlgoType type);
 

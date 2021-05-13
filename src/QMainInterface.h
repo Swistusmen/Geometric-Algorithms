@@ -18,6 +18,7 @@
 #include <tuple>
 #include <map>
 #include <qcolordialog.h>
+#include <qfiledialog.h>
 
 #define TIME 3000
 
@@ -35,6 +36,8 @@ public slots:
 	void ChangeAlgorithm(int index);
 	void CommandAlgorithm(int commad);
 	void ClearBoard();
+	void ChangeBoardSize(int dim);
+	void OpenFileDialogToLoadData();
 private:  //variables
 	Ui::Form ui;
 
@@ -43,17 +46,16 @@ private:  //variables
 	QDrawingBoard* inputBoard;
 	QSignalMapper* pageMapper;
 	QSignalMapper* algorithmMapper;
+	QSignalMapper* algorithmMapper2;
+	QSignalMapper* boardSizeMapper;
 	QDataWidgetMapper* algoType;
 	QStandardItemModel* model;
+	QFileDialog* fileDialog;
 	std::vector<std::tuple< std::string, AlgoType>> algoSetup; //swithc to read from file
 	std::map<AlgoState,QString> algoStates;
-	
 	int time = TIME;
 private: //methods
 	inline void UpdateAlgorithmState(AlgoState state);
-	//void ChangeBoardSize();// to implement today
-	//make 1 board which for both interfaces -DONE
-	//repair reset button
 };
 
 #endif

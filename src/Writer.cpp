@@ -15,13 +15,18 @@ std::vector<std::string> GetSaves()
 	return saves;
 }
 
-std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string filename)
+std::pair<std::vector<unsigned int>, AlgoType> ReadInputFromFile(std::string filename,bool isPath)
 {
 	std::ifstream file;
-	auto path = fs::current_path().parent_path().parent_path();
-	path += "\\saves\\";
-	path += filename;
-	file.open(path);
+	if (!isPath) {
+		auto path = fs::current_path().parent_path().parent_path();
+		path += "\\saves\\";
+		path += filename;
+		file.open(path);
+	}
+	else {
+		file.open(filename);
+	}
 	std::string codedMatrix;
 	std::string algoType;
 	std::getline(file, algoType);
