@@ -40,7 +40,9 @@ FieldRepresentation BoardImplementation::Representation()
 
 AlgoType BoardImplementation::GetAlgorithm()
 {
-	return algo->Type();
+	if(algo!=nullptr)
+		return algo->Type();
+	return AlgoType::None;
 }
 
 AlgoState BoardImplementation::PerformAlgorithm()

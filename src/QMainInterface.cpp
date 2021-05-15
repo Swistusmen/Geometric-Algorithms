@@ -13,8 +13,8 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	std::vector<unsigned int> input(625);
 	std::fill(input.begin(), input.end(), 0);
 	algorithms = std::make_unique<BoardImplementation>(collectionOfAlgorithms, input);
-
-	auto colors = ReadPalleteOfColors();
+	
+	auto colors = GenerateColors();
 	board = new QDrawingBoard(ui.page_2);
 	board->LoadNewData(input);
 	board->SetUpCollorPallete(colors);
@@ -54,6 +54,12 @@ void QMainInterface::ChangePage(int index)
 
 void QMainInterface::CommandAlgorithm(int command)
 {
+	
+	if (AlgoType::None == algorithms->GetAlgorithm())
+	{
+		msgBox.exec();
+		return;
+	}
 	switch (command) {
 	case 0: {
 		algorithms->ClearAlgorithm();
@@ -209,10 +215,27 @@ void QMainInterface::InitializeWidgets()
 	pageMapper->setMapping(ui.algoInterface, 1);
 
 	boardSizeMapper = new QSignalMapper(this);
+
+	msgBox.setText("Algorithm not selected!");
 }
 
-// control of algorithm type
-//improve colors- generation
+std::vector<std::array<int, 3>> QMainInterface::GenerateColors()
+{
+	std::vector<std::array<int, 3>> colors;
+	colors.push_back({ 255,255,255 });
+	colors.push_back({ 0,0,0 });
+	colors.push_back({ 255,0,0 });
+	colors.push_back({ 0,255,0 });
+	srand(std::time(NULL));
+	for (int i = 0; i < 100; i++)
+	{
+		colors.push_back({rand() % 255 + 1, rand() & 255 + 1, rand() % 255 + 1});
+	}
+	return colors;
+}
+
+// control of algorithm type-
+// improve colors- generation
 // repair algorithms
 // directory hierarchy to improve
 

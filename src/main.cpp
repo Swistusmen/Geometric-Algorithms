@@ -22,8 +22,8 @@
 3. Integrate Application with GUI- to let it work separatelty 
 -add combo box binding //done
 4. Improve input data:
-	-let read data
-	-create input mode
+	-let read data //done
+	-create input mode //done
 5. Add nice features:
 	-description of every algorithm
 6. Improve building tool

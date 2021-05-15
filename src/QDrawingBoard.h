@@ -42,7 +42,7 @@ private:  //variables
 	QPushButton* button;
 	bool isSquareDisplayd = false;
 	std::vector<unsigned int> currentPicture;
-	std::map<int, QColor> colorPallete; //should be read from file
+	std::map<int, QColor> colorPallete; 
 	bool isInputBoard = false;
 	bool scribbling = false;
 	bool isDrawingPossible = false;

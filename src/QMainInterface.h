@@ -19,6 +19,9 @@
 #include <map>
 #include <qcolordialog.h>
 #include <qfiledialog.h>
+#include <stdio.h>
+#include <qmessagebox.h>
+#include <time.h>
 
 #define TIME 3000
 
@@ -50,6 +53,7 @@ private:  //variables
 	QSignalMapper* algorithmMapper;
 	QSignalMapper* algorithmMapper2;
 	QSignalMapper* boardSizeMapper;
+	QMessageBox msgBox;
 	
 	QDataWidgetMapper* algoType;
 	std::vector<std::tuple< QString, AlgoType>> algoSetup; //swithc to read from file
@@ -60,6 +64,13 @@ private: //methods
 
 	void ConnectWidgets();
 	void InitializeWidgets();
+	std::vector<std::array<int, 3>> GenerateColors();
 };
 
 #endif
+
+/*
+1. Messge box dla niewybranego algprtmu
+2. Wczytywanie algorytmu
+
+*/
