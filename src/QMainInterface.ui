@@ -109,32 +109,6 @@
       <string>Uninitialized</string>
      </property>
     </widget>
-    <widget class="QLabel" name="const_data">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>130</y>
-       <width>111</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Data type:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="current_loaded_data">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>150</y>
-       <width>111</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Unread</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="next_step">
      <property name="geometry">
       <rect>
@@ -257,10 +231,10 @@
     <widget class="QWidget" name="verticalLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>441</width>
-       <height>391</height>
+       <x>20</x>
+       <y>0</y>
+       <width>451</width>
+       <height>401</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="input_board_place"/>
@@ -352,19 +326,6 @@
      </property>
      <property name="text">
       <string>Algorithm</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>120</y>
-       <width>111</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Algorithm description</string>
      </property>
     </widget>
     <widget class="QComboBox" name="choose_color">
