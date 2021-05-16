@@ -33,7 +33,6 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 
 void QMainInterface::ChangePage(int index)
 {
-	std::cout << ui.algo_type->currentIndex() << std::endl;
 	switch (index) {
 	case 2: {
 		ui.label->setText("Data");
@@ -107,7 +106,6 @@ void QMainInterface::UpdateAlgorithmState(AlgoState state)
 	ui.current_algo_state->setText(algoStates.at(state));
 }
 
-
 void QMainInterface::ClearBoard() {
 	auto data = inputBoard->GetCurrentPicture();
 	std::fill(std::begin(data), std::end(data), 0);
@@ -137,7 +135,7 @@ void QMainInterface::ChangeBoardSize(int index)
 void QMainInterface::OpenFileDialogToLoadData()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
-		tr("Open Image"), "/", tr("Image Files (*.txt */.cpp)"));
+		tr("Open Image"), QString::fromStdString(path), tr("Image Files (*.txt */.cpp)"));
 	if (fileName.toStdString() == "")
 		return;
 	auto readAlgo = ReadInputFromFile(fileName.toStdString(), true);
@@ -145,17 +143,18 @@ void QMainInterface::OpenFileDialogToLoadData()
 	inputBoard->LoadNewData(readAlgo.first);
 	inputBoard->PresentAlgorithm();
 	algorithms->LoadNewData(readAlgo.first);
+	currentType = readAlgo.second;
+	ui.algo_type->setCurrentIndex(AlgoTypeToInt(currentType));
+	ui.algo_type_2->setCurrentIndex(AlgoTypeToInt(currentType));
 }
 
 void QMainInterface::OpenFileDialogToSaveData()
 {
 	QString fileName = QFileDialog::getSaveFileName(this,
-		tr("Open Image"), "/", tr("Image Files (*.txt */.cpp)"));
+		tr("Open Image"), QString::fromStdString(path), tr("Image Files (*.txt */.cpp)"));
 	if (fileName.toStdString() == "")
 		return;
-	std::cout << "File to save: " << fileName.toStdString() << std::endl;
-	//WARNING -CHANGE LAST PARAMETER FO FUNCTION BELOW AFTER IMPLEENTATION
-	SaveOutputToFile(fileName.toStdString(), inputBoard->GetCurrentPicture(), AlgoType::FindingVerticies, true);
+	SaveOutputToFile(fileName.toStdString(), inputBoard->GetCurrentPicture(), currentType, true);
 }
 
 void QMainInterface::ChangeColor(int index)
@@ -179,6 +178,7 @@ void QMainInterface::ConnectWidgets()
 	connect(ui.algoInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
 	connect(ui.creativInterface, SIGNAL(clicked()), pageMapper, SLOT(map()));
 	connect(ui.algo_type, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeAlgorithm(int)));
+	connect(ui.algo_type_2, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeAlgorithm(int)));
 	connect(pageMapper, SIGNAL(mapped(int)), this, SLOT(ChangePage(int)));
 	connect(ui.clear_memory, SIGNAL(pressed()), algorithmMapper, SLOT(map()));
 	connect(ui.next_step, SIGNAL(clicked()), algorithmMapper, SLOT(map()));
@@ -188,11 +188,11 @@ void QMainInterface::ConnectWidgets()
 void QMainInterface::InitializeWidgets()
 {
 	algoSetup.push_back({ "Not initialized", AlgoType::None });
-	algoSetup.push_back({ "Finding Way", AlgoType::FindingWay });
-	algoSetup.push_back({ "Triangulation", AlgoType::DelaunayTriangulation });
 	algoSetup.push_back({ "Bounding Box" ,AlgoType::BoundingBox });
+	algoSetup.push_back({ "Finding Way", AlgoType::FindingWay });
+	algoSetup.push_back({ "Finding Verticies" ,AlgoType::FindingVerticies });
 	algoSetup.push_back({ "Voronoi Diagram" ,AlgoType::VoronoiDiagram });
-	algoSetup.push_back({ "Finding Verticies" ,AlgoType::FindingWay });
+	algoSetup.push_back({ "Triangulation", AlgoType::DelaunayTriangulation });
 
 	algoStates.insert({ AlgoState::NONE, "None" });
 	algoStates.insert({ AlgoState::FINISHED_SUCCESS,"Success" });
@@ -202,10 +202,10 @@ void QMainInterface::InitializeWidgets()
 	for (int i = 0; i < algoSetup.size(); i++)
 	{
 		ui.algo_type->addItem(std::get<0>(algoSetup[i]));
+		ui.algo_type_2->addItem(std::get<0>(algoSetup[i]));
 	}
 
 	algorithmMapper = new QSignalMapper(this);
-
 	algorithmMapper->setMapping(ui.clear_memory, 0);
 	algorithmMapper->setMapping(ui.perform_whole_algorithm, 1);
 	algorithmMapper->setMapping(ui.next_step, 2);
@@ -217,6 +217,7 @@ void QMainInterface::InitializeWidgets()
 	boardSizeMapper = new QSignalMapper(this);
 
 	msgBox.setText("Algorithm not selected!");
+	path = std::filesystem::current_path().u8string()+"/../../saves";
 }
 
 std::vector<std::array<int, 3>> QMainInterface::GenerateColors()
@@ -234,20 +235,27 @@ std::vector<std::array<int, 3>> QMainInterface::GenerateColors()
 	return colors;
 }
 
-// control of algorithm type-
-// improve colors- generation
-// repair algorithms
-// directory hierarchy to improve
+AlgoType QMainInterface::IntToAlgoType(int index)
+{
+	switch (index) {
+	case 0: {return AlgoType::None; }break;
+	case 1: {return AlgoType::BoundingBox; }break;
+	case 2: {return AlgoType::FindingWay; }break;
+	case 3: {return AlgoType::FindingVerticies; }break;
+	case 4: {return AlgoType::VoronoiDiagram; }break;
+	case 5: {return AlgoType::DelaunayTriangulation; }break;
+	}
+}
 
-
-
-/*TODO
-- dodanie opcji zmiany koloru -uproszczenie tylko pierwsze podstawowe //JEST
-- dodanie opcji odczytu danych z pliku JEST
-- dodanie opcji zapisu danych do pliku JEST
-- poprawa layoutow //JEST
-- poprawa algorytmow
-- dodanie algorithm description
-- poprawa cmake (budowa na widnowsie)
-*/
+int QMainInterface::AlgoTypeToInt(AlgoType type)
+{
+	switch (type) {
+	case AlgoType::None: {return 0; }break;
+	case AlgoType::BoundingBox: {return 1; }break;
+	case AlgoType::FindingWay: {return 2; }break;
+	case AlgoType::FindingVerticies: {return 3; }break;
+	case AlgoType::VoronoiDiagram: {return 4; }break;
+	case AlgoType::DelaunayTriangulation: {return 5; }break;
+	}
+}
 

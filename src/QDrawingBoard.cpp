@@ -15,7 +15,6 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 {
 	const int noCells = currentPicture.size();
 	const int dim = static_cast<int>(sqrt(noCells));
-	//can be separate function- detect colors
 	std::vector<unsigned int> colorsOnThePicture;
 	for (int i = 0; i < noCells; i++)
 	{
@@ -31,7 +30,7 @@ void QDrawingBoard::paintEvent(QPaintEvent* event)
 			colorsOnThePicture.push_back(i);
 		}
 	}
-	//setting up size of a cell
+	
 	const int cellWidth = this->width() / dim;
 	const int noCollors = colorsOnThePicture.size();
 	for (int i = 0; i < noCollors; i++)
@@ -83,14 +82,10 @@ void QDrawingBoard::mouseMoveEvent(QMouseEvent* event)
 		Draw(event->pos());
 }
 
-
 void QDrawingBoard::mouseReleaseEvent(QMouseEvent* event)
 {
 	scribbling = false;
 }
-
-//Make it possible to change colors to 0,1,2,3
- 
 
 void QDrawingBoard::Draw(const QPoint& point)
 {
@@ -101,7 +96,6 @@ void QDrawingBoard::Draw(const QPoint& point)
 	int y_pos = std::floor(point.y() / cellWidth);
 
 	int index = y_pos * dim + x_pos;
-	std::cout << index << std::endl;
 	if ((index >= noCells) ||(index<0))
 		return;
 	currentPicture[index] = color;

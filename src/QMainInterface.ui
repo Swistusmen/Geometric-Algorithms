@@ -257,10 +257,10 @@
     <widget class="QWidget" name="verticalLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>10</y>
-       <width>421</width>
-       <height>381</height>
+       <width>441</width>
+       <height>391</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="input_board_place"/>
@@ -331,7 +331,7 @@
       <string>Clear</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="algo_type_2">
      <property name="geometry">
       <rect>
        <x>480</x>
