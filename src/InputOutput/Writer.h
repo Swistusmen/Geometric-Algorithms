@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <Windows.h>
-#include "Utilities.h"
+#include "../Algorithms/Utilities.h"
 #include <array>
 
 std::string ParseToMatrix(std::vector<unsigned int> input);

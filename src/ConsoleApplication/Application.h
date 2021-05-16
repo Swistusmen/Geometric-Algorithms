@@ -1,6 +1,6 @@
 #include "MainInterface.h"
 #include "AlgorithmInterface.h"
-#include "Board.h"
+#include "../Algorithms/Board.h"
 #include "Writer.h"
 #include <stack>
 #include <Windows.h>

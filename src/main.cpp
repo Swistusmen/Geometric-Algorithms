@@ -1,10 +1,7 @@
-#include "Board.h"
+#include "../Algorithms/Board.h"
 #include "Writer.h"
 #include "Application.h"
 
-#include <QtWidgets/qapplication.h>
-#include <qwidget.h>
-#include <qpushbutton.h>
 #include "QMainInterface.h"
 #include "QDrawingBoard.h"
 

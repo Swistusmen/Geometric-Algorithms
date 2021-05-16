@@ -6,12 +6,20 @@ set(SOURCES ${SOURCES})
 
 find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 
-qt5_wrap_ui(UI_SOURCES QMainInterface.ui)
+set(CMAKE_AUTOMOC ON)
 
-add_executable(${BINARY}_run ${SOURCES} ${UI_SOURCES})
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
+qt5_wrap_ui(SOURCES QMainInterface.ui)
+
+include_directories(Algorihtms)
+include_directories(ConsoleApplication)
+include_directories(InputOutput)
+include_directories(QtApplication)
+
+add_executable(${BINARY}_run ${SOURCES})
 
 target_link_libraries(${CMAKE_PROJECT_NAME}_run Qt5::Widgets)
 target_link_libraries(${CMAKE_PROJECT_NAME}_run Qt5::Core)
 target_link_libraries(${CMAKE_PROJECT_NAME}_run Qt5::Gui)
-
-add_library(${BINARY}_lib STATIC ${SOURCES})

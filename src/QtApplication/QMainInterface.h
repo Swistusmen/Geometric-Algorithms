@@ -3,14 +3,12 @@
 #define QMAININTERFACE_H
 
 #include <qwidget.h>
-#include "../build/src/ui_QMainInterface.h"
 #include <qstringbuilder.h>
-#include "ButtonStates.h"
 #include "QDrawingBoard.h"
 #include "Writer.h"
 #include <qsignalmapper.h>
-#include "Board.h"
-#include "Strategy.h"
+#include "Algorithms/Board.h"
+#include "Algorithms/Strategy.h"
 #include <utility>
 #include <qdatawidgetmapper.h>
 #include <qstandarditemmodel.h>
@@ -23,6 +21,7 @@
 #include <qmessagebox.h>
 #include <time.h>
 #include <filesystem>
+#include "../build/src/ui_QMainInterface.h"
 
 #define TIME 3000
 
