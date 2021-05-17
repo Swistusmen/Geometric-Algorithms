@@ -58,7 +58,12 @@ cmake -S .. -B $(pwd)
 
 <b> Interfaces: </b>
 
+Data interface:
 
+![alt text](https://github.com/Swistusmen/Geometric-Algorithms/blob/master/screenshots/input.png)
+
+Algorithm iterface:
+![alt text](https://github.com/Swistusmen/Geometric-Algorithms/blob/master/screenshots/algorithm.png)
 
 
 
