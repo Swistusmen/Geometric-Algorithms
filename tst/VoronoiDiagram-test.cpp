@@ -1,4 +1,4 @@
-#include "VoronoiDiagram.cpp"
+#include "../src/Algorithms/VoronoiDiagram.h"
 #include "gtest/gtest.h"
 
 TEST(VoronoiDiagram, Diagram_1)

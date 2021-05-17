@@ -1,4 +1,4 @@
-#include "DTriangulation.cpp"
+#include "../src/Algorithms/DTriangulation.cpp"
 #include "gtest/gtest.h"
 
 TEST(DTriangulation, Triangulation1_1)

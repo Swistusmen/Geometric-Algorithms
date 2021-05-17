@@ -1,4 +1,4 @@
-#include "FindingWay.cpp"
+#include "../src/Algorithms/FindingWay.cpp"
 #include "gtest/gtest.h"
 
 TEST(FindingWay, Labirynth_1)

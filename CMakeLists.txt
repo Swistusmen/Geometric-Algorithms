@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set (CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64\\lib\\cmake")
 
 include_directories(src)
-#include_directories(tst)
-#include_directories(lib/include(GoogleTest))
+include_directories(tst)
+include_directories(lib/include(GoogleTest))
 
 add_subdirectory(src)
 add_subdirectory(tst)

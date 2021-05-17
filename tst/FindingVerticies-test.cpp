@@ -1,5 +1,4 @@
-#include "FindingVerticies.h"
-#include "FindingVerticies.cpp"
+#include "../src/Algorithms/FindingVerticies.cpp"
 #include "gtest/gtest.h"
 
 TEST(FindingVerticies, Shape_1)

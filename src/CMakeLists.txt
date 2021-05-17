@@ -23,3 +23,7 @@ add_executable(${BINARY}_run ${SOURCES})
 target_link_libraries(${CMAKE_PROJECT_NAME}_run Qt5::Widgets)
 target_link_libraries(${CMAKE_PROJECT_NAME}_run Qt5::Core)
 target_link_libraries(${CMAKE_PROJECT_NAME}_run Qt5::Gui)
+
+#make library only with alogirhtms- exclude not needed qt files
+file(GLOB ALGO_TO_TEST "./Algorithms/*cpp" "./Algorithms/*h")
+add_library(${BINARY}_lib STATIC ${ALGO_TO_TEST})

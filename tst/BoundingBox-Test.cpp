@@ -1,4 +1,4 @@
-#include "BoundingBox.h"
+#include "../src/Algorithms/BoundingBox.h"
 #include "gtest/gtest.h"
 
 
