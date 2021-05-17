@@ -1,46 +1,36 @@
 <h1>Geometric Algorithms</h1>
 
-<h2>Purpose of this project</h2>
+<h2>Tech stack</h2>
 
--Learn geometric algorithms
+-C++ 17
 
--Improve C++ and project patterns skills
+-Googletest
+
+-Qt 5.15.2
 
 <h2>Demands</h2>
 
--visual studio 2019 (project include windows libraries)
-
--google test (every algorithm has test cases)
-
--compiler which supports C++2017 features (I'm compiling using msvc_2019)
+Project was designed to be built using msvcc19 compiler. It hasn't been testing for any unix-like system. To built, there is need to provide googletest manually to destination: lib/googletest/. Also project doesn't include any tool for installation of Qt packages, interested person should perfomr it manually. If both googletest and qt will be provided, build should be done successfuly. I'm planning to implement building console app in case if no Qt packages were detected. Unit tests covers only algorithms
 
 <h2>Build</h2>
 
-For now there is need to add google test manually to the lib as directory is empty (will be made as subdirectory)</br>
-Project demand qt 5.15.2, in the future cmake will be modified to allow creting version without GUI
 ```
-cd src
-qmake
-cd ..
 mkdir build
 cd build
 cmake -S .. -B $(pwd)
 ```
-Open project, open and add .pro file (it is src.proj within src), run this project (it'll fail, but create needed moc files), then recreate project
-```
-cmake -S .. -B $(pwd)
-```
-Delete duplicated moc_* files and project is ready to run
-Sometimes there may be need to:
-Go to C:\Windows\System32\cmd.exe, run
 
-```
-windeployqt.exe {Project path}\build\src\Debug
-```
+<h2> Implemented algorithms </h2>
 
-<b> Warning </b>
-I'm not completly sure if this steps will be repeatable on other windows machines, first you need to install qt in vs, what is hardest part
+- Bounding box (rectangle)
 
+-Finding way (stupid algorithm- choosing always the longest path)
+
+-Finding verticies
+
+-Voronoi Diagram
+
+-Delano Traingulation
 
 <h2>Implemented algorithms </h2>
 
@@ -54,34 +44,23 @@ I'm not completly sure if this steps will be repeatable on other windows machine
 
 -Delano triangulation
 
-<h2>To implement </h2>
+<h2>Gui app information </h2>
 
--GUI
+<b> Meaningufull (constant) colors: </b> 
 
--better input
+⬜- empty/ not initialized
 
--algorithm parallelism
+⬛- wall / shape boundary /line
 
--working on png files as inputs
+🟥- goal / founded
 
--algorithms: other ways of finding paths, checking if figure is contiunues, blending figures, ncellular automata
+🟩- position / movement
+
+<b> Interfaces: </b>
 
 
-<h4>Important about integrating cpp project with qt</h4>
-https://stackoverflow.com/questions/4028604/add-qt-to-existing-visual-studio-c-project
 
-https://forum.qt.io/topic/114299/convert-visual-studio-2017-solution-to-use-qt/2
 
-Steps done to switch to Qt (the best solution, not working now):
 
--proper installation (for me 5.15.2 worked, but I had problems with 6.* and 5.9.9, maybe now I could work with it)- installer 2.4, run out of the VS
 
--changes in CMakeLists.txt- CMAKE_PREFIX_PATH need to be set, libraries should be dll files added by windeployqt.exe, there is also possiblitiy to add them by install in cmake probably
 
--after adding file with Q_OBJECT macro there is need to run 
-
-```
-qmake
-```
-
-in src file and rebuild project. The purpose of this action is to create moc_file.cpp. 
