@@ -14,7 +14,8 @@ QMainInterface::QMainInterface(QWidget* parent) : QWidget(parent)
 	std::fill(input.begin(), input.end(), 0);
 	algorithms = std::make_unique<BoardImplementation>(collectionOfAlgorithms, input);
 	
-	auto colors = GenerateColors();
+	//auto colors = GenerateColors();
+	auto colors = ReadPalleteOfColors();
 	board = new QDrawingBoard(ui.page_2);
 	board->LoadNewData(input);
 	board->SetUpCollorPallete(colors);
