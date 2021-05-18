@@ -55,19 +55,18 @@ std::pair<FindingWay::RobotAction, int> FindingWay::ScanForAWay(std::vector<unsi
 				break;
 			if (board[tempRobot]== 0|| board[tempRobot] == 2)
 			{
-				distances[i]++;
 				if (board[tempRobot] == 2)
 				{
+					distances[i]++;
 					founded = i;
-					std::cout << "Founded\n";
 					break;
 				}
 				if((tempRobot%dimension==0&&(previousRobot+1)%dimension==0) || (previousRobot % dimension == 0 && (tempRobot + 1) % dimension == 0))
 					break;
+				distances[i]++;
 			}
 		}
 	}
-
 
 	int rightEdge = dimension - (robot % dimension)-1;
 	int leftEdge = dimension - rightEdge -1;

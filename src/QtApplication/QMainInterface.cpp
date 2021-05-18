@@ -155,7 +155,8 @@ void QMainInterface::OpenFileDialogToSaveData()
 		tr("Open Image"), QString::fromStdString(path), tr("Image Files (*.txt */.cpp)"));
 	if (fileName.toStdString() == "")
 		return;
-	SaveOutputToFile(fileName.toStdString(), inputBoard->GetCurrentPicture(), currentType, true);
+	auto type=IntToAlgoType(ui.algo_type_2->currentIndex());
+	SaveOutputToFile(fileName.toStdString(), inputBoard->GetCurrentPicture(), type, true);
 }
 
 void QMainInterface::ChangeColor(int index)

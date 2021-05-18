@@ -14,20 +14,20 @@ std::vector<unsigned int> BoundingBox::Perform(std::vector<unsigned int> data)
 	}
 	if (geometries.empty())
 	{
-		std::cerr << "No geoemtires inside\n";
+		this->state == AlgoState::FINISHED_FAILURE;
 		return data;
 	}
 	auto indexes = FindEdgeIndexes(geometries,dimension,size);
 	indexes = CalculateEdgeRows(indexes, dimension);
 	if (indexes[3] == -1 || indexes[1] == -1 || indexes[0] < 0 || indexes[2] < 0)
 	{
-		std::cerr << "Size of board is to small\n";
+		this->state == AlgoState::FINISHED_FAILURE;
 		return data;
 	}
 	int tl =  indexes[0] * dimension + indexes[3];
 	int tr = indexes[0] * dimension + indexes[1];
-	int br =  (indexes[2] -1) * dimension + indexes[1];
-	int bl =  (indexes[1] -1)* dimension + indexes[3];
+	int br =  (indexes[2]) * dimension + indexes[1];
+	int bl =  (indexes[2])* dimension + indexes[3];
 
 	for (int i = tl; i < tr; i ++)
 		data[i] = 2;
@@ -48,33 +48,13 @@ std::array<int, 4> BoundingBox::FindEdgeIndexes(std::vector<int> data, int dim, 
 {
 	int topIndex = data.front();
 	int botIndex = data.back();
-	int rightIndex = -1, leftIndex = -1;
-	for (int i = 0; i < dim; i++)
+	int rightIndex = -1, leftIndex = 10000000000;
+	const int noCells = data.size();
+	for (int i = 0; i < noCells; i++)
 	{
-		for (int j = i; j < size; j += dim)
-		{
-			if (data[j] == 1)
-			{
-				leftIndex = j;
-				break;
-			}
-		}
-		if (leftIndex != -1)
-			break;
-	}
-
-	for (int i = dim - 1; i >= 0; i--)
-	{
-		for (int j = i; j < size; j += dim)
-		{
-			if (data[j] == 1)
-			{
-				rightIndex = j;
-				break;
-			}
-		}
-		if (rightIndex != -1)
-			break;
+		int value = data[i] % dim;
+		leftIndex=value < leftIndex ? value : leftIndex;
+		rightIndex = value > rightIndex ? value : rightIndex;
 	}
 	std::array<int, 4> a{ topIndex,rightIndex,botIndex,leftIndex };
 	return a;
@@ -84,7 +64,7 @@ std::array<int, 4> BoundingBox::CalculateEdgeRows(std::array<int, 4> data, int d
 {
 	data[0] = floor(static_cast<double>(data[0] - dim) / dim);
 	data[1] = (data[1] + 1) % dim == 0 ? -1 : (data[1] + 1) % dim + 1;
-	data[2] = ceil(static_cast<double>(data[2] + dim) / dim);
+	data[2] = ceil(static_cast<double>((data[2] + dim) / dim));
 	data[3] = data[3] % dim == 0 ? -1 : (data[3]) % dim - 1;
 	return data;
 }
