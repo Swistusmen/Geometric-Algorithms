@@ -7,6 +7,7 @@ AlgorithmsKeeper::AlgorithmsKeeper()
 	algorithms.insert({ AlgoType::FindingVerticies, std::make_shared<FindingVerticies>() });
 	algorithms.insert({ AlgoType::VoronoiDiagram, std::make_shared<VoronoiDiagram>() });
 	algorithms.insert({ AlgoType::DelaunayTriangulation, std::make_shared<DTriangulation>() });
+	algorithms.insert({ AlgoType::GraphFindingWay, std::make_shared<GraphFindingWay>() });
 }
 
 std::shared_ptr<Algorithm> AlgorithmsKeeper::GetAlgorithm(AlgoType type)

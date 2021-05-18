@@ -4,6 +4,7 @@
 #include "FindingVerticies.h"
 #include "VoronoiDiagram.h"
 #include "DTriangulation.h"
+#include "GraphFindingWay.h"
 
 class GeometricalAlgorithms {
 public:

@@ -195,6 +195,7 @@ void QMainInterface::InitializeWidgets()
 	algoSetup.push_back({ "Finding Verticies" ,AlgoType::FindingVerticies });
 	algoSetup.push_back({ "Voronoi Diagram" ,AlgoType::VoronoiDiagram });
 	algoSetup.push_back({ "Triangulation", AlgoType::DelaunayTriangulation });
+	algoSetup.push_back({ "Graph way", AlgoType::GraphFindingWay });
 
 	algoStates.insert({ AlgoState::NONE, "None" });
 	algoStates.insert({ AlgoState::FINISHED_SUCCESS,"Success" });
@@ -246,6 +247,7 @@ AlgoType QMainInterface::IntToAlgoType(int index)
 	case 3: {return AlgoType::FindingVerticies; }break;
 	case 4: {return AlgoType::VoronoiDiagram; }break;
 	case 5: {return AlgoType::DelaunayTriangulation; }break;
+	case 6: {return AlgoType::GraphFindingWay; }break;
 	}
 }
 
@@ -258,6 +260,7 @@ int QMainInterface::AlgoTypeToInt(AlgoType type)
 	case AlgoType::FindingVerticies: {return 3; }break;
 	case AlgoType::VoronoiDiagram: {return 4; }break;
 	case AlgoType::DelaunayTriangulation: {return 5; }break;
+	case AlgoType::GraphFindingWay: {return 5; }break;
 	}
 }
 
