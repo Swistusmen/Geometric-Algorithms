@@ -34,7 +34,7 @@ cmake -S .. -B $(pwd)
 
 <h2>Implemented algorithms </h2>
 
--finding path in labirynth
+-finding path in labirynth- select longest possible road or road to glory, don't check if repeat
 
 -minimum square bounding box
 
@@ -43,6 +43,8 @@ cmake -S .. -B $(pwd)
 -voronoi diagram
 
 -Delano triangulation
+
+-finding path in labirynth- check if repeat, randomly select way 
 
 <h2>Gui app information </h2>
 
